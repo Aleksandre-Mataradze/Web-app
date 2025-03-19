@@ -9,16 +9,56 @@
 </head>
 <body>
     <header>
-        <div class="header-container">
+        <div class="header-container-top">
             <div class="header-container-contact-info">
                 <span> <i class="fa-solid fa-phone"></i> +995 568 112 011 </span>
-                <span> <i class="fa-solid fa-phone"></i> mataradze.alex@gmail.com </span>
+                <span> <i class="fa-solid fa-envelope"></i> mataradze.alex@gmail.com </span>
             </div>
-            <div class="header-container-service"></div>
+            <div class="header-container-service">
+                <ul class="service-list">
+                    <li class="service"> ონლაინ განდვადება </li>
+                    <li class="service"> მიწოდება </li>
+                    <li class="service" style="border-right: 1px solid white;"> <img src="./img/Flag_of_Georgia.svg.png" alt="GE-LANG" style="width: 18px;"> GEO </li>
+                </ul>
+            </div>
         </div>
+            <div class="header-container-main">
+                <a href="index.html"><img src="./img/DALL·E.webp" alt="" style="border-radius: 50%; width: 85px;"></a>
+                <form action="">
+                    <input type="text" placeholder="რას ეძებთ?">
+                    <div id="submit">
+                        <span> ძებნა </span>
+                    </div>
+                </form>
+                <div class="account">
+                    <div class="sign-up">
+                        <i class="fa-solid fa-user"></i> შესვლა
+                    </div>
+                    <div class="cart">
+                        <i class="fa-solid fa-cart-shopping"></i> 0.00ლ
+                        <div class="amout">
+                            <span id="counter">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </header>
+    <main>
+        <div class="categories-container">
+            <div class="categories">
+                <span>კატეგორიები</span>
+                <i class="fa-solid fa-arrow-down"></i>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: row; gap: 20px;">
+            <div class="categories-list-container"></div>
+            <div class="card-list">
+                <div class="laptop-card-list">
+                </div>
+            </div>
+        </div>
+    </main>
 
-
-    <script src="mian.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

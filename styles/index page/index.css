@@ -1,1 +1,152 @@
-/*# sourceMappingURL=index.css.map */
+@font-face {
+  font-family: NotoGeo;
+  src: url(../../fonts/Noto_Serif_Georgian/static/NotoSerifGeorgian-Regular.ttf);
+}
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  font-family: NotoGeo;
+}
+
+body header .header-container-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 12%;
+  background-color: #1e1d1d;
+  color: white;
+}
+body header .header-container-top .header-container-contact-info {
+  display: flex;
+  gap: 15px;
+  font-size: 14px;
+}
+body header .header-container-top .header-container-contact-info span {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  cursor: pointer;
+}
+body header .header-container-top .header-container-service {
+  padding: 10px 0px;
+}
+body header .header-container-top .header-container-service .service-list {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-size: 12px;
+  list-style: none;
+}
+body header .header-container-top .header-container-service .service-list .service {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  border-left: 1px solid white;
+  cursor: pointer;
+}
+body header .header-container-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 12%;
+  color: white;
+  background-color: #3a3939;
+}
+body header .header-container-main form {
+  display: flex;
+  width: 36rem;
+}
+body header .header-container-main form input {
+  width: 80%;
+  height: 42px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  padding: 0px 12px;
+  outline: none;
+  border: none;
+}
+body header .header-container-main form #submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  width: 20%;
+  background-color: #2f64ad;
+  cursor: pointer;
+}
+body header .header-container-main .account {
+  display: flex;
+  gap: 12px;
+  color: black;
+}
+body header .header-container-main .account .sign-up {
+  padding: 8px 14px;
+  border-radius: 12px;
+  background-color: white;
+  cursor: pointer;
+}
+body header .header-container-main .account .cart {
+  position: relative;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background-color: white;
+  cursor: pointer;
+}
+body header .header-container-main .account .cart .amout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  border-radius: 50%;
+  background-color: rgb(221, 59, 59);
+}
+body main {
+  padding: 0px 10%;
+}
+body main .categories-container {
+  display: flex;
+  width: -moz-min-content;
+  width: min-content;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #2f64ad;
+  cursor: pointer;
+}
+body main .categories-container .categories {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 116px;
+  padding: 12px 24px;
+  color: white;
+  font-size: 14px;
+}
+body main .categories-list-container {
+  width: 270px;
+  height: 720px;
+  border: 1px solid black;
+}
+body main .card-list {
+  padding: 15px 12px;
+  width: 80%;
+  background-color: lightcoral;
+}
+body main .card-list .laptop-card-list {
+  display: flex;
+  flex-direction: row;
+}
+body main .card-list .laptop-card-list .card {
+  width: -moz-min-content;
+  width: min-content;
+  padding: 4px 6px;
+}
+body main .card-list .laptop-card-list .card img {
+  width: 220px;
+}/*# sourceMappingURL=index.css.map */
