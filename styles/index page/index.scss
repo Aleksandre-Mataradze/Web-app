@@ -115,7 +115,6 @@ body{
         }
     }
     main{
-        padding: 0px 10%;
         .categories-container{
             // margin-left: 10%;
             display: flex;
@@ -124,6 +123,7 @@ body{
             border-bottom-right-radius: 10px;
             background-color: $PrimaryBgColor;
             cursor: pointer;
+            margin-left: 1%;
             
             .categories{
                 display: flex;
@@ -135,28 +135,47 @@ body{
                 font-size: 14px;
             }
         }
-        .categories-list-container{
-            // დროებითია ყველაფერი
-            width: 270px; 
-            height: 720px;
-            border: 1px solid black;
-            // margin-left: 10%;
-        }
+        // .categories-list-container{
+        //     // დროებითია ყველაფერი
+        //     width: 270px; 
+        //     height: 720px;
+        //     border: 1px solid black;
+        //     // margin-left: 10%;
+        // }
         .card-list{
             padding: 15px 12px;
             width: 80%;
-            background-color: lightcoral;
 
             .laptop-card-list{
                 display: flex;
+                justify-content: center;
                 flex-direction: row;
+                gap: 24px;
 
                 .card{
-                    width: min-content;
-                    padding: 4px 6px;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 12px;
+                    border-radius: 12px;
+                    border: 1px solid #cccccc;
+                    background-color: white;
+                    min-width: 280px;
+                    height: 380px;
+                    padding: 12px 6px;
+                    position: relative;
 
                     img{
-                        width: 220px;
+                        height: 170px;
+                    }
+                    h5{
+                        text-align: center;
+                        font-weight: normal;
+                    }
+                    .price{
+                        position: absolute;
+                        bottom: 100px;
+                        color: red;
                     }
                 }
             }

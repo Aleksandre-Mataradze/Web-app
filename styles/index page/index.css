@@ -107,9 +107,6 @@ body header .header-container-main .account .cart .amout {
   border-radius: 50%;
   background-color: rgb(221, 59, 59);
 }
-body main {
-  padding: 0px 10%;
-}
 body main .categories-container {
   display: flex;
   width: -moz-min-content;
@@ -118,6 +115,7 @@ body main .categories-container {
   border-bottom-right-radius: 10px;
   background-color: #2f64ad;
   cursor: pointer;
+  margin-left: 1%;
 }
 body main .categories-container .categories {
   display: flex;
@@ -128,25 +126,38 @@ body main .categories-container .categories {
   color: white;
   font-size: 14px;
 }
-body main .categories-list-container {
-  width: 270px;
-  height: 720px;
-  border: 1px solid black;
-}
 body main .card-list {
   padding: 15px 12px;
   width: 80%;
-  background-color: lightcoral;
 }
 body main .card-list .laptop-card-list {
   display: flex;
+  justify-content: center;
   flex-direction: row;
+  gap: 24px;
 }
 body main .card-list .laptop-card-list .card {
-  width: -moz-min-content;
-  width: min-content;
-  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 12px;
+  border: 1px solid #cccccc;
+  background-color: white;
+  min-width: 280px;
+  height: 380px;
+  padding: 12px 6px;
+  position: relative;
 }
 body main .card-list .laptop-card-list .card img {
-  width: 220px;
+  height: 170px;
+}
+body main .card-list .laptop-card-list .card h5 {
+  text-align: center;
+  font-weight: normal;
+}
+body main .card-list .laptop-card-list .card .price {
+  position: absolute;
+  bottom: 100px;
+  color: red;
 }/*# sourceMappingURL=index.css.map */
