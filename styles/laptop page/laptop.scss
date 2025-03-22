@@ -90,7 +90,7 @@ body{
                 display: flex;
                 gap: 12px;
                 color: black;
-                .sign-in{
+                .sign-up{
                     padding: 8px 14px;
                     border-radius: 12px;
                     background-color: white;
@@ -165,14 +165,14 @@ body{
                     li{
                         font-size: 14px;
                         list-style: none;
-                        padding: 6px 0px 6px 0px;
+                        padding-bottom: 6px;
+                        padding-left: 4px;
                         border-bottom: 1px solid rgb(167, 167, 167);
                         cursor: pointer;
-                        text-align: center;
                         
                         a{
                             text-decoration: none;
-                        color: #1f1f1f;
+                            color: #1f1f1f;
                         }
                     }
                 }
@@ -182,219 +182,50 @@ body{
                 display: block;
             }
         }
-        .card-list{
-            padding: 15px 12px;
-            width: 80%;
 
-            .laptop-card-list{
+        .main-container{
+            display: flex;
+            flex-direction: column;
+
+            .filter-container{
                 display: flex;
-                justify-content: center;
-                flex-direction: row;
-                gap: 24px;
+                flex-direction: column;
+                align-items: center;
+                width: 260px;
+                margin-left: 1%;
+                padding: 6px 0px;
+                gap: 6px;
 
-                .card{
+                .filter-box{
                     display: flex;
-                    align-items: center;
                     flex-direction: column;
-                    gap: 12px;
+                    width: 220px;
+                    gap: 6px;
+                    border: 1px solid $PrimaryBorderColor;
                     border-radius: 12px;
-                    border: 1px solid #cccccc;
-                    background-color: white;
-                    width: 280px;
-                    height: 380px;
-                    padding: 12px 6px;
-                    position: relative;
-                    cursor: pointer;
 
-                    img{
-                        height: 170px;
-                    }
-                    h5{
-                        margin-top: 12px;
+                    p{
+                        font-size: 15px;
                         text-align: center;
-                        font-weight: normal;
+                        cursor: default;
                     }
-                    .price{
-                        position: absolute;
-                        bottom: 60px;
-                        color: red;
-                    }
-                    .sale-price{
-                        color: #7c7c7c;
-                        position: absolute;
-                        right: -44px;
-                        bottom: -12px;
-                        rotate: -24deg;
-                    }
-                    .rating{
-                        position: absolute;
-                        left: 15px;
-                        bottom: 15px;
-
-                        i{
-                            color: rgb(223, 189, 0);
+    
+                    ul{
+                        padding: 0px;
+                        
+                        li{
+                            border-top: 1px solid $PrimaryBorderColor;
+                            padding: 1px;
+                            padding-left: 12px;
+                            list-style: none;
+                            cursor: pointer;
                         }
                     }
                 }
-
-                .card:hover{
-                    box-shadow: 1px 1px 4px #cccccc;
-                }
             }
-        }
-    }
+            .product-container{
 
-    .blurred-background {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        backdrop-filter: blur(5px);
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 3;
-    }
-
-    .sign-in-form{
-        display: none;
-        // display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        z-index: 5;
-        width: 24vw;
-        min-height: 280px;
-        top: 25%;
-        left: 38%;
-        right: 38%;
-        gap: 24px;
-        padding: 24px 0px;
-        background-color: rgb(247, 247, 247);
-        border: 1px solid $PrimaryBorderColor;
-        border-radius: 18px;
-
-        i{
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            cursor: pointer;
-        }
-
-        .input{
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-
-            label{
-                text-align: center;
-                font-size: 14px;
             }
-
-            input{
-                outline: none;
-                border: 1px solid $PrimaryBorderColor;
-                background-color: white;
-                padding: 0px 6px;
-                border-radius: 16px;
-            }
-        }
-
-        .sign-in-button{
-            outline: none;
-            border: 1px solid $PrimaryBorderColor;
-            border-radius: 8px;
-            color: $PrimaryBgColor;
-            background-color: white;
-            padding: 3px 8px;
-            cursor: pointer;
-            transition-property: background-color, color;
-            transition-duration: 0.3s;
-            transition-timing-function: ease;
-        }
-
-        .sign-in-button:hover{
-            background-color: $PrimaryBgColor;
-            color: white;
-        }
-
-        .next-to-sign-up-button{
-            outline: none;
-            border: 1px solid $PrimaryBorderColor;
-            border-radius: 8px;
-            color: $PrimaryBgColor;
-            background-color: white;
-            padding: 3px 8px;
-            cursor: pointer;
-            transition-property: background-color, color;
-            transition-duration: 0.3s;
-            transition-timing-function: ease;
-        }
-
-        .next-to-sign-up-button:hover{
-            background-color: $PrimaryBgColor;
-            color: white;
-        }
-    }
-
-    .sign-up-form{
-        display: none;
-        // display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        z-index: 5;
-        width: 24vw;
-        top: 25%;
-        left: 38%;
-        right: 38%;
-        gap: 12px;
-        padding: 24px 0px;
-        background-color: rgb(247, 247, 247);
-        border: 1px solid $PrimaryBorderColor;
-        border-radius: 18px;
-
-        i{
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            cursor: pointer;
-        }
-
-        .input{
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-
-            label{
-                text-align: center;
-                font-size: 14px;
-            }
-
-            input{
-                outline: none;
-                border: 1px solid $PrimaryBorderColor;
-                background-color: white;
-                padding: 0px 6px;
-                border-radius: 16px;
-            }
-        }
-
-        .gender{
-            flex-direction: row;
-        }
-
-        h3{
-            text-align: center;
-        }
-
-        #avatar{
-            display: none;
-        }
-        
-        p{
-            font-size: 12px;
-            color: rgb(22, 92, 223);
-            cursor: pointer;
         }
     }
 }

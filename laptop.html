@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptops</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/laptop page/laptop.css">
+</head>
+<body data-page="laptop">
+    <header>
+        <div class="header-container-top">
+            <div class="header-container-contact-info">
+                <span> <i class="fa-solid fa-phone"></i> +995 568 112 011 </span>
+                <span> <i class="fa-solid fa-envelope"></i> mataradze.alex@gmail.com </span>
+            </div>
+            <div class="header-container-service">
+                <ul class="service-list">
+                    <li class="service"> ონლაინ განდვადება </li>
+                    <li class="service"> მიწოდება </li>
+                    <li class="service" style="border-right: 1px solid white;"> <img src="./img/Flag_of_Georgia.svg.png" alt="GE-LANG" style="width: 18px;"> GEO </li>
+                </ul>
+            </div>
+        </div>
+            <div class="header-container-main">
+                <a href="index.html"><img src="./img/DALL·E.webp" alt="" style="border-radius: 50%; width: 85px;"></a>
+                <form action="">
+                    <input type="text" placeholder="რას ეძებთ?">
+                    <div id="submit">
+                        <span> ძებნა </span>
+                    </div>
+                </form>
+                <div class="account">
+                    <div class="sign-up">
+                        <i class="fa-solid fa-user"></i> შესვლა
+                    </div>
+                    <div class="cart">
+                        <i class="fa-solid fa-cart-shopping"></i> 0.00ლ
+                        <div class="amout">
+                            <span id="counter">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>   
+    <main>
+        <div class="categories-container">
+            <div class="categories">
+                <span>კატეგორიები</span>
+                <i class="fa-solid fa-arrow-down"></i>
+            </div>
+            <div class="categories-list-container">
+                <ul>
+                    <li><a href="laptop.html">ლეპტოპი</a></li>
+                    <li><a href="phones.html">ტელეფონი</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="filter-container">
+                <div class="filter-box">
+                    <p>ბრენდები</p>
+                    <ul id="brand-list-box">
+                        
+                    </ul>
+                </div>
+                <div class="filter-box">
+                    <p>ფასი</p>
+                </div>
+                <div class="filter-box">
+                    <p>რეიტინგი</p>
+                </div>
+            </div>
+            <div class="product-container"></div>
+        </div>
+
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
