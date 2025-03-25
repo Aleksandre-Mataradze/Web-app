@@ -34,12 +34,21 @@
                     <div class="sign-in">
                         <i class="fa-solid fa-user"></i> შესვლა
                     </div>
+                    <div class="user">
+                        <img id="user-img">
+                        <div class="user-menu-container">
+                            <ul>
+                                <li id="log-out">Log Out</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="cart">
                         <i class="fa-solid fa-cart-shopping"></i> 0.00ლ
                         <div class="amout">
                             <span id="counter">0</span>
                         </div>
                     </div>
+                    <!-- <span class="verify-button" style="position: absolute; bottom: -22px; left: 16%; right: 54%; color: rgb(22, 92, 223); cursor: pointer;">verify</span> -->
                 </div>
             </div>
     </header>
@@ -96,6 +105,11 @@
         <div class="email input">
             <label for="email">ელექტრონული მისამართი:</label>
             <input type="email" name="email" id="email">
+            <!-- <span id="verify-button" class="verify-button">verify</span> -->
+        </div>
+        <div class="email input">
+            <label for="email">გაიმეორეთ ელ. ფოსტა:</label>
+            <input type="email" name="email" id="email-verification">
         </div>
         <div class="password input">
             <label for="password">პაროლი:</label>
@@ -128,7 +142,6 @@
         </div>
         <p id="sign-up-button">რეგისტრაცია</p>
     </div>
-
     <script src="main.js"></script>
 </body>
 </html>

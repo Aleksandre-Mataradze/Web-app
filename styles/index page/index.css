@@ -83,6 +83,7 @@ body header .header-container-main form #submit {
 }
 body header .header-container-main .account {
   display: flex;
+  position: relative;
   gap: 12px;
   color: black;
 }
@@ -92,8 +93,48 @@ body header .header-container-main .account .sign-in {
   background-color: white;
   cursor: pointer;
 }
-body header .header-container-main .account .cart {
+body header .header-container-main .account .user {
+  display: none;
+  padding: 2px;
+  border-radius: 50%;
+  background-color: white;
   position: relative;
+  cursor: pointer;
+}
+body header .header-container-main .account .user #user-img {
+  border-radius: 50%;
+  height: 43px;
+  width: 43px;
+}
+body header .header-container-main .account .user .user-menu-container {
+  display: none;
+  background-color: #fafafa;
+  position: absolute;
+  top: 54px;
+  left: -70%;
+  width: 120px;
+  border-radius: 18px;
+  padding: 6px 10px;
+  border: 1px solid #cccccc;
+}
+body header .header-container-main .account .user .user-menu-container ul {
+  padding: 0;
+}
+body header .header-container-main .account .user .user-menu-container ul li {
+  text-align: center;
+  font-size: 14px;
+  list-style: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #cccccc;
+}
+body header .header-container-main .account .user .block {
+  display: block;
+}
+body header .header-container-main .account .cart {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 6px;
   padding: 8px 14px;
   border-radius: 12px;
   background-color: white;
@@ -330,6 +371,7 @@ body .sign-up-form .input {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  position: relative;
 }
 body .sign-up-form .input label {
   text-align: center;
@@ -341,6 +383,14 @@ body .sign-up-form .input input {
   background-color: white;
   padding: 0px 6px;
   border-radius: 16px;
+}
+body .sign-up-form .input #verify-button {
+  display: none;
+  position: absolute;
+  right: -48px;
+  bottom: 0px;
+  color: rgb(22, 92, 223);
+  cursor: pointer;
 }
 body .sign-up-form .gender {
   flex-direction: row;

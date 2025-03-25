@@ -8,6 +8,9 @@
   font-family: NotoGeo;
 }
 
+body .block {
+  display: block !important;
+}
 body header .header-container-top {
   display: flex;
   align-items: center;
@@ -83,17 +86,58 @@ body header .header-container-main form #submit {
 }
 body header .header-container-main .account {
   display: flex;
+  position: relative;
   gap: 12px;
   color: black;
 }
-body header .header-container-main .account .sign-up {
+body header .header-container-main .account .sign-in {
   padding: 8px 14px;
   border-radius: 12px;
   background-color: white;
   cursor: pointer;
 }
-body header .header-container-main .account .cart {
+body header .header-container-main .account .user {
+  display: none;
+  padding: 2px;
+  border-radius: 50%;
+  background-color: white;
   position: relative;
+  cursor: pointer;
+}
+body header .header-container-main .account .user #user-img {
+  border-radius: 50%;
+  height: 43px;
+  width: 43px;
+}
+body header .header-container-main .account .user .user-menu-container {
+  display: none;
+  background-color: #fafafa;
+  position: absolute;
+  top: 54px;
+  left: -70%;
+  width: 120px;
+  border-radius: 18px;
+  padding: 6px 10px;
+  border: 1px solid #cccccc;
+}
+body header .header-container-main .account .user .user-menu-container ul {
+  padding: 0;
+}
+body header .header-container-main .account .user .user-menu-container ul li {
+  text-align: center;
+  font-size: 14px;
+  list-style: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #cccccc;
+}
+body header .header-container-main .account .user .block {
+  display: block;
+}
+body header .header-container-main .account .cart {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 6px;
   padding: 8px 14px;
   border-radius: 12px;
   background-color: white;
@@ -169,22 +213,25 @@ body main .categories-container .categories-list-container-block {
 }
 body main .main-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding: 0px 16px;
+  gap: 24px;
 }
 body main .main-container .filter-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 260px;
-  margin-left: 1%;
+  width: 280px;
+  min-width: 280px;
   padding: 6px 0px;
   gap: 6px;
 }
 body main .main-container .filter-container .filter-box {
   display: flex;
   flex-direction: column;
-  width: 220px;
+  width: 100%;
   gap: 6px;
+  padding: 2px 0px;
   border: 1px solid #cccccc;
   border-radius: 12px;
 }
@@ -197,9 +244,218 @@ body main .main-container .filter-container .filter-box ul {
   padding: 0px;
 }
 body main .main-container .filter-container .filter-box ul li {
+  display: flex;
+  justify-content: space-between;
   border-top: 1px solid #cccccc;
   padding: 1px;
-  padding-left: 12px;
+  padding: 2px 10px;
   list-style: none;
+  cursor: pointer;
+}
+body main .main-container .filter-container .filter-box ul li .checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 21px;
+  height: 21px;
+  background-color: white;
+  border: 1px solid #cccccc;
+}
+body main .main-container .filter-container .filter-box ul li .checkbox i {
+  display: none;
+}
+body main .main-container .product-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 24px;
+}
+body main .main-container .product-container .card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 12px;
+  border: 1px solid #cccccc;
+  background-color: white;
+  width: 280px;
+  height: 380px;
+  padding: 12px 6px;
+  position: relative;
+  cursor: pointer;
+}
+body main .main-container .product-container .card img {
+  height: 170px;
+}
+body main .main-container .product-container .card h5 {
+  margin-top: 12px;
+  text-align: center;
+  font-weight: normal;
+}
+body main .main-container .product-container .card .price {
+  position: absolute;
+  bottom: 60px;
+  color: red;
+}
+body main .main-container .product-container .card .sale-price {
+  color: #7c7c7c;
+  position: absolute;
+  right: -44px;
+  bottom: -12px;
+  rotate: -24deg;
+}
+body main .main-container .product-container .card .rating {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+}
+body main .main-container .product-container .card .rating i {
+  color: rgb(223, 189, 0);
+}
+body main .main-container .product-container .card:hover {
+  box-shadow: 1px 1px 4px #cccccc;
+}
+body .blurred-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+body .sign-in-form {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 5;
+  width: 24vw;
+  min-height: 280px;
+  top: 25%;
+  left: 38%;
+  right: 38%;
+  gap: 24px;
+  padding: 24px 0px;
+  background-color: rgb(247, 247, 247);
+  border: 1px solid #cccccc;
+  border-radius: 18px;
+}
+body .sign-in-form i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+body .sign-in-form .input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body .sign-in-form .input label {
+  text-align: center;
+  font-size: 14px;
+}
+body .sign-in-form .input input {
+  outline: none;
+  border: 1px solid #cccccc;
+  background-color: white;
+  padding: 0px 6px;
+  border-radius: 16px;
+}
+body .sign-in-form .sign-in-button {
+  outline: none;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  color: #2f64ad;
+  background-color: white;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition-property: background-color, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+body .sign-in-form .sign-in-button:hover {
+  background-color: #2f64ad;
+  color: white;
+}
+body .sign-in-form .next-to-sign-up-button {
+  outline: none;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  color: #2f64ad;
+  background-color: white;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition-property: background-color, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+body .sign-in-form .next-to-sign-up-button:hover {
+  background-color: #2f64ad;
+  color: white;
+}
+body .sign-up-form {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 5;
+  width: 24vw;
+  top: 25%;
+  left: 38%;
+  right: 38%;
+  gap: 12px;
+  padding: 24px 0px;
+  background-color: rgb(247, 247, 247);
+  border: 1px solid #cccccc;
+  border-radius: 18px;
+}
+body .sign-up-form i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+body .sign-up-form .input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+body .sign-up-form .input label {
+  text-align: center;
+  font-size: 14px;
+}
+body .sign-up-form .input input {
+  outline: none;
+  border: 1px solid #cccccc;
+  background-color: white;
+  padding: 0px 6px;
+  border-radius: 16px;
+}
+body .sign-up-form .input #verify-button {
+  display: none;
+  position: absolute;
+  right: -48px;
+  bottom: 0px;
+  color: rgb(22, 92, 223);
+  cursor: pointer;
+}
+body .sign-up-form .gender {
+  flex-direction: row;
+}
+body .sign-up-form h3 {
+  text-align: center;
+}
+body .sign-up-form #avatar {
+  display: none;
+}
+body .sign-up-form p {
+  font-size: 12px;
+  color: rgb(22, 92, 223);
   cursor: pointer;
 }/*# sourceMappingURL=laptop.css.map */

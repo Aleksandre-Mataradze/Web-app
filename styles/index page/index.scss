@@ -88,6 +88,7 @@ body{
             }
             .account{
                 display: flex;
+                position: relative;
                 gap: 12px;
                 color: black;
                 .sign-in{
@@ -96,8 +97,53 @@ body{
                     background-color: white;
                     cursor: pointer;
                 }
-                .cart{
+                .user{
+                    display: none;
+                    padding: 2px;
+                    border-radius: 50%;
+                    background-color: white;
                     position: relative;
+                    cursor: pointer;
+
+                    #user-img{
+                        border-radius: 50%;
+                        height: 43px;
+                        width: 43px;
+                    }
+
+                    .user-menu-container{
+                        display: none;
+                        background-color: #fafafa;
+                        position: absolute;
+                        top: 54px;
+                        left: -70%;
+                        width: 120px;
+                        border-radius: 18px;
+                        padding: 6px 10px;
+                        border: 1px solid $PrimaryBorderColor;
+                        
+                        ul{
+                            padding: 0;
+
+                            li{
+                                text-align: center;
+                                font-size: 14px;
+                                list-style: none;
+                                padding-bottom: 2px;
+                                border-bottom: 1px solid $PrimaryBorderColor;
+                            }
+                        }
+                    }
+                    
+                    .block{
+                        display: block;
+                    }
+                }
+                .cart{
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    gap: 6px;
                     padding: 8px 14px;
                     border-radius: 12px;
                     background-color: white;
@@ -243,7 +289,6 @@ body{
             }
         }
     }
-
     .blurred-background {
         position: absolute;
         width: 100%;
@@ -364,6 +409,7 @@ body{
             display: flex;
             flex-direction: column;
             gap: 4px;
+            position: relative;
 
             label{
                 text-align: center;
@@ -376,6 +422,15 @@ body{
                 background-color: white;
                 padding: 0px 6px;
                 border-radius: 16px;
+            }
+
+            #verify-button{
+                display: none;
+                position: absolute;
+                right: -48px;
+                bottom: 0px;
+                color: rgb(22, 92, 223);
+                cursor: pointer;
             }
         }
 

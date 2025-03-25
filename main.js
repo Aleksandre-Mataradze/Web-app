@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
 function homePageFunction(){
 
+    let access_token;
+
     fetch('https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38')
     .then((response) => response.json())
     .then((data) => {
@@ -73,18 +75,18 @@ function homePageFunction(){
                     card.appendChild(pricePara)
                 }
 
-                const ratingPara = document.createElement('span');
-                ratingPara.classList.add("rating")
-                ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
-                card.appendChild(ratingPara);
-                const ratingStar = document.createElement('i');
-                ratingStar.classList.add("fa-solid");
-                ratingStar.classList.add("fa-star");
-                ratingPara.appendChild(ratingStar)
+                    const ratingPara = document.createElement('span');
+                    ratingPara.classList.add("rating")
+                    ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                    card.appendChild(ratingPara);
+                    const ratingStar = document.createElement('i');
+                    ratingStar.classList.add("fa-solid");
+                    ratingStar.classList.add("fa-star");
+                    ratingPara.appendChild(ratingStar)
+                }
             }
         }
-    }
-})
+    })
 
     const categoryCont = document.querySelector(".categories");
     categoryCont.addEventListener('click', categoryPopOut);
@@ -94,168 +96,13 @@ function homePageFunction(){
 
     }
 
-    const signInbutton = document.querySelector(".sign-in");
-    signInbutton.addEventListener('click', signInPopOut);
+    
 
-    function signInPopOut(){
-        document.querySelector(".non-blur").classList.add("blurred-background")
+    const signInButton = document.querySelector(".sign-in");
+    signInButton.addEventListener('click', signInPopOut);
 
-        let signInValues = {
-            email : '',
-            password : ''
-        }
-
-        const signInSubmit = document.querySelector(".sign-in-button")
-        signInSubmit.addEventListener('click', () => {
-            signInValues.email = document.querySelector("#sign-in-email").value;
-            signInValues.password = document.querySelector("#sign-in-password").value;
-
-            fetch('https://api.everrest.educata.dev/auth/sign_in', {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(signInValues)
-                })
-                .then((response) => response.json())
-                .then((data) => {
-                    if(data.access_token != null || undefined)
-                    localStorage.setItem("AuthToken", data.access_token)
-
-                    for(let key in signInValues){
-                        localStorage.setItem(key, signInValues[key])
-                    }
-                })
-        })
-
-        const signInForm = document.querySelector(".sign-in-form")
-        signInForm.style.display = "flex";
-
-        const quitSignInForm = document.querySelector(".quit-sign-in-form")
-        quitSignInForm.addEventListener('click', () => {
-            document.querySelector(".non-blur").classList.remove("blurred-background");
-            signInForm.style.display = "none";
-            const emailInput = document.querySelector("#sign-in-email");
-            emailInput.value = "";
-            const passwordInput = document.querySelector("#sign-in-password");
-            passwordInput.value = "";
-        })
-
-        const blurArea = document.querySelector(".non-blur");
-            blurArea.addEventListener('click', () => {
-                document.querySelector(".non-blur").classList.remove("blurred-background");
-                signInForm.style.display = "none";
-                document.querySelector("#first-name").value = "";
-                document.querySelector("#last-name").value = "";
-                document.querySelector("#age").value = "";
-                document.querySelector("#email").value = "";
-                document.querySelector("#password").value = "";
-                document.querySelector("#address").value = "";
-                document.querySelector("#phone").value = "";
-                document.querySelector("#zipcode").value = "";
-                document.querySelector("#avatar").value = "";
-            })
-
-        let signUpValues = {
-            firstName : 'string',
-            lastName : 'string',
-            age : 404,
-            email : 'string',
-            password : 'Magari123',
-            address : 'string',
-            phone : '+995568112011',
-            zipcode : 'string',
-            avatar : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.veryicon.com%2Ficons%2Fmiscellaneous%2Fuser-avatar%2Fuser-avatar-male-5.html&psig=AOvVaw31q6Nr8HTkYWyhM3Qcr6DC&ust=1742756962241000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOCvveKxnowDFQAAAAAdAAAAABAE',
-            gender : 'MALE'         
-        }
-
-        const nextTosignUp = document.querySelector(".next-to-sign-up-button");
-        nextTosignUp.addEventListener('click', () => {
-            signInForm.style.display = "none";
-            const emailInput = document.querySelector("#sign-in-email");
-            emailInput.value = "";
-            const passwordInput = document.querySelector("#sign-in-password");
-            passwordInput.value = "";
-            const signUpForm = document.querySelector(".sign-up-form");
-            signUpForm.style.display = "flex";
-
-            const signUpSubmit = document.querySelector("#sign-up-button");
-            signUpSubmit.addEventListener('click', () => {
-                signUpValues.firstName = document.querySelector("#first-name").value;
-                signUpValues.lastName = document.querySelector("#last-name").value;
-                signUpValues.age = document.querySelector("#age").value;
-                signUpValues.email = document.querySelector("#email").value;
-                signUpValues.password = document.querySelector("#password").value;
-                signUpValues.address = document.querySelector("#address").value;
-                signUpValues.phone_number = document.querySelector("#phone").value;
-                signUpValues.zipcode = document.querySelector("#zipcode").value;
-                signUpValues.gender = document.querySelector("input:checked").value;
-
-                console.log(signUpValues)
-
-                fetch('https://api.everrest.educata.dev/auth/sign_up', {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(signUpValues)
-                })
-                .then((response) => response.json())
-                .then((data) => console.log(data))
-
-            })
-
-            // fetch('https://api.everrest.educata.dev/auth/id/67df0c87c6d74d268041626b', {
-            //         method: "GET",
-            //         headers: {
-            //             'Content-Type': 'application/json'
-            //         }
-            //     })
-            //     .then((response) => response.json())
-            //     .then((data) => console.log(data))
-
-            const quitSignUpForm = document.querySelector(".quit-sign-up-form");
-            quitSignUpForm.addEventListener('click', () => {
-                document.querySelector(".non-blur").classList.remove("blurred-background");
-                signUpForm.style.display = "none";
-                document.querySelector("#first-name").value = "";
-                document.querySelector("#last-name").value = "";
-                document.querySelector("#age").value = "";
-                document.querySelector("#email").value = "";
-                document.querySelector("#password").value = "";
-                document.querySelector("#address").value = "";
-                document.querySelector("#phone").value = "";
-                document.querySelector("#zipcode").value = "";
-                document.querySelector("#avatar").value = "";
-            })
-
-            const blurArea = document.querySelector(".non-blur");
-            blurArea.addEventListener('click', () => {
-                document.querySelector(".non-blur").classList.remove("blurred-background");
-                    signUpForm.style.display = "none";
-                    document.querySelector("#first-name").value = "";
-                    document.querySelector("#last-name").value = "";
-                    document.querySelector("#age").value = "";
-                    document.querySelector("#email").value = "";
-                    document.querySelector("#password").value = "";
-                    document.querySelector("#address").value = "";
-                    document.querySelector("#phone").value = "";
-                    document.querySelector("#zipcode").value = "";
-                    document.querySelector("#avatar").value = "";
-            })
-        })
-    }
-
-    // fetch('https://api.everrest.educata.dev/auth', {
-    //     method: "GET",
-    //     headers: {
-    //         'Content-Type': 'application/json', 
-    //         'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RmMGZhMGM2ZDc0ZDI2ODA0MTY0MTAiLCJmaXJzdE5hbWUiOiJ0ZXN0IiwibGFzdE5hbWUiOiJ0ZXN0IiwiYWdlIjoxMCwiZW1haWwiOiJ0ZXN0LnRlc3RAZ21haS5jb20iLCJhZGRyZXNzIjoidGVzdDEiLCJyb2xlIjoiZGVmYXVsdCIsInppcGNvZGUiOiIwMTAyIiwiYXZhdGFyIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw_c2E9aSZ1cmw9aHR0cHMlM0ElMkYlMkZ3d3cudmVyeWljb24uY29tJTJGaWNvbnMlMkZtaXNjZWxsYW5lb3VzJTJGdXNlci1hdmF0YXIlMkZ1c2VyLWF2YXRhci1tYWxlLTUuaHRtbCZwc2lnPUFPdlZhdzMxcTZOcjhIVGtZV3loTTNRY3I2REMmdXN0PTE3NDI3NTY5NjIyNDEwMDAmc291cmNlPWltYWdlcyZjZD12ZmUmb3BpPTg5OTc4NDQ5JnZlZD0wQ0JRUWpSeHFGd29UQ09DdnZlS3hub3dERlFBQUFBQWRBQUFBQUJBRSIsImdlbmRlciI6Ik1BTEUiLCJwaG9uZSI6Iis5OTU1NjgxMTIwMTEiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzQyNjczMTY1LCJleHAiOjE3NDI2NzY3NjV9.1HSpnXTEoG2a8fB13JhP5D0cDxLAtxaSyo2dMZtD4p0'
-    //     },
-    // })
-    // .then((response) => response.json())
-    // .then((data) => console.log(data))
-
+    staySignedIn()
+    signOut()
 }
 
 
@@ -275,11 +122,20 @@ function laptopPageFunction(){
         const brandListBox = document.getElementById('brand-list-box')
 
         for(value of filteredProductBrands){
-            let listElement = document.createElement('li');
+            const listElement = document.createElement('li');
+            listElement.classList.add("brand");
+            listElement.setAttribute("data-type", value);
             listElement.textContent = value;
-            brandListBox.appendChild(listElement)
-            
+            brandListBox.appendChild(listElement);
+            const checkBox = document.createElement('div'); 
+            checkBox.setAttribute("class", `checkbox`);
+            listElement.appendChild(checkBox);
+            const checked = document.createElement("i");
+            checked.setAttribute("class", `fa-solid fa-check ${value}`);
+            checkBox.appendChild(checked);
         }
+
+        categoryFilter()
     })
     
     const categoryCont = document.querySelector(".categories");
@@ -289,7 +145,371 @@ function laptopPageFunction(){
         document.querySelector(".categories-list-container").classList.toggle("categories-list-container-block")
 
     }
+
+    const signInButton = document.querySelector(".sign-in");
+    signInButton.addEventListener('click', signInPopOut);
+
+    staySignedIn()
+    signOut()
 }
+
+function signInPopOut(){
+    // Full forms of sign in and sign up
+    document.querySelector(".non-blur").classList.add("blurred-background")
+
+    let signInValues = {
+        email : '',
+        password : ''
+    }
+
+    const signInSubmit = document.querySelector(".sign-in-button")
+    signInSubmit.addEventListener('click', () => {
+        signInValues.email = document.querySelector("#sign-in-email").value;
+        signInValues.password = document.querySelector("#sign-in-password").value;
+
+        fetch('https://api.everrest.educata.dev/auth/sign_in', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(signInValues)
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if(data.access_token != null || undefined){
+                    let userID = undefined;
+                    localStorage.setItem("AuthToken", data.access_token)
+                    access_token = data.access_token;
+
+                    fetch('https://api.everrest.educata.dev/auth', {
+                        method: "GET",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization' : `Bearer ${access_token}`
+                        }
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        userID = data._id;
+                        if(access_token == "Incorrect Input"){
+                            document.querySelector("#sign-in-email").style.border = "1px solid red";
+                            document.querySelector("#sign-in-email").style.backgroundcolor = "beige";
+                            document.querySelector("#sign-in-password").style.border = "1px solid red";
+                            document.querySelector("#sign-in-password").style.backgroundcolor = "beige";
+        
+                        }else if (access_token != "Incorrect Input" && userID){
+                                document.querySelector(".sign-in-form").style.display = "none";
+                                document.querySelector(".non-blur").classList.remove("blurred-background");
+                                document.querySelector("#sign-in-email").value = "";
+                                document.querySelector("#sign-in-password").value = "";
+                                localStorage.setItem("user ID", userID);
+                                location.reload()
+                        }
+                    })
+
+                    // Test, Display user Input: Email & Password.
+                    for(let key in signInValues){
+                        localStorage.setItem(`Test: ${key}`, signInValues[key])
+                    }
+                }
+                else{
+                    access_token = "Incorrect Input";
+                    localStorage.setItem("AuthToken", access_token);
+                }
+            })
+    })
+
+
+    const signInForm = document.querySelector(".sign-in-form")
+    signInForm.style.display = "flex";
+
+    const quitSignInForm = document.querySelector(".quit-sign-in-form")
+    quitSignInForm.addEventListener('click', () => {
+        document.querySelector(".non-blur").classList.remove("blurred-background");
+        signInForm.style.display = "none";
+        const emailInput = document.querySelector("#sign-in-email");
+        emailInput.value = "";
+        const passwordInput = document.querySelector("#sign-in-password");
+        passwordInput.value = "";
+    })
+
+    const blurArea = document.querySelector(".non-blur");
+        blurArea.addEventListener('click', () => {
+            document.querySelector(".non-blur").classList.remove("blurred-background");
+            signInForm.style.display = "none";
+            document.querySelector("#first-name").value = "";
+            document.querySelector("#last-name").value = "";
+            document.querySelector("#age").value = "";
+            document.querySelector("#email").value = "";
+            document.querySelector("#password").value = "";
+            document.querySelector("#address").value = "";
+            document.querySelector("#phone").value = "";
+            document.querySelector("#zipcode").value = "";
+            document.querySelector("#avatar").value = "";
+        })
+
+    let signUpValues = {
+        firstName : 'string',
+        lastName : 'string',
+        age : 404,
+        email : 'string',
+        password : 'Magari123',
+        address : 'string',
+        phone : '+995568112011',
+        zipcode : 'string',
+        avatar : 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?semt=ais_hybrid',
+        gender : 'MALE',
+    }
+
+    let verification = {
+        email : ''
+    }
+
+    const nextTosignUp = document.querySelector(".next-to-sign-up-button");
+    nextTosignUp.addEventListener('click', () => {
+        signInForm.style.display = "none";
+        const emailInput = document.querySelector("#sign-in-email");
+        emailInput.value = "";
+        const passwordInput = document.querySelector("#sign-in-password");
+        passwordInput.value = "";
+        const signUpForm = document.querySelector(".sign-up-form");
+        signUpForm.style.display = "flex";
+
+        const signUpSubmit = document.querySelector("#sign-up-button");
+        signUpSubmit.addEventListener('click', () => {
+            signUpValues.firstName = document.querySelector("#first-name").value;
+            signUpValues.lastName = document.querySelector("#last-name").value;
+            signUpValues.age = document.querySelector("#age").value;
+            signUpValues.email = document.querySelector("#email").value;
+            verification.email = document.querySelector("#email-verification").value;
+            signUpValues.password = document.querySelector("#password").value;
+            signUpValues.address = document.querySelector("#address").value;
+            signUpValues.phone_number = document.querySelector("#phone").value;
+            signUpValues.zipcode = document.querySelector("#zipcode").value;
+            signUpValues.gender = document.querySelector("input:checked").value;
+
+            console.log("object", signUpValues)
+            console.log("object", verification)
+
+            if(signUpValues.email == verification.email){
+
+            fetch('https://api.everrest.educata.dev/auth/sign_up', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(signUpValues)
+            })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+
+            fetch('https://api.everrest.educata.dev/auth/verify_email', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(verification)
+                })
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+            }else{
+                console.log("შეყვანილი მეილები არ ემთხვევა ერთმანეთს!")
+            }
+        })
+
+        const quitSignUpForm = document.querySelector(".quit-sign-up-form");
+        quitSignUpForm.addEventListener('click', () => {
+            document.querySelector(".non-blur").classList.remove("blurred-background");
+            signUpForm.style.display = "none";
+            document.querySelector("#first-name").value = "";
+            document.querySelector("#last-name").value = "";
+            document.querySelector("#age").value = "";
+            document.querySelector("#email").value = "";
+            document.querySelector("#password").value = "";
+            document.querySelector("#address").value = "";
+            document.querySelector("#phone").value = "";
+            document.querySelector("#zipcode").value = "";
+            document.querySelector("#avatar").value = "";
+        })
+
+        const blurArea = document.querySelector(".non-blur");
+        blurArea.addEventListener('click', () => {
+            document.querySelector(".non-blur").classList.remove("blurred-background");
+                signUpForm.style.display = "none";
+                document.querySelector("#first-name").value = "";
+                document.querySelector("#last-name").value = "";
+                document.querySelector("#age").value = "";
+                document.querySelector("#email").value = "";
+                document.querySelector("#password").value = "";
+                document.querySelector("#address").value = "";
+                document.querySelector("#phone").value = "";
+                document.querySelector("#zipcode").value = "";
+                document.querySelector("#avatar").value = "";
+
+        })
+    })
+}
+
+function staySignedIn(){
+    const userID = localStorage.getItem('user ID')
+    const accessToken = localStorage.getItem('AuthToken');
+    const signInButton = document.querySelector(".sign-in");
+    const userIcon = document.querySelector(".user");
+
+    if(userID && accessToken != "Incorrect Input"){
+        console.log("ყველა მონაცემი ადგილზეა");
+        signInButton.style.display = "none";
+        userIcon.style.display = "flex";
+
+        fetch('https://api.everrest.educata.dev/auth', {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization' : `Bearer ${accessToken}`
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            const userIconImg = document.querySelector("#user-img").setAttribute("src", "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?semt=ais_hybrid")
+        })
+        
+
+    }else{
+        console.log("ყველა მონაცემი არ არის ადგილზე");
+    }
+
+    return 0;
+}
+
+function signOut(){
+    const userIcon = document.querySelector(".user");
+    userIcon.addEventListener('click', () => {
+    const userMenu = document.querySelector(".user-menu-container");
+    userMenu.classList.toggle("block")
+    })
+    const signOut = document.querySelector("#log-out");
+    signOut.addEventListener('click', () => {
+        localStorage.removeItem('AuthToken');
+        localStorage.removeItem('user ID');
+        // Test Email and Password
+        localStorage.removeItem('Test: email');
+        localStorage.removeItem('Test: password');
+        location.reload()
+    })
+}
+
+function categoryFilter(){
+    let filterStatus = {
+        brand : [],
+        status : Boolean
+    }
+
+    const categoryBrands = document.querySelectorAll(".brand");
+    categoryBrands.forEach((element) => element.addEventListener('click', function(){
+        if (element.getAttribute("data-type") === element.textContent){
+            const brand = element.getAttribute('data-type');
+            console.log(brand)
+            const makeChecked = document.querySelector(`.${brand}`)
+            makeChecked.classList.toggle('block')
+            
+            if (makeChecked.classList.contains("block")){
+                filterStatus.brand.push(brand);
+                filterStatus.status = true;
+            }else{
+                filterStatus.brand = filterStatus.brand.filter((value) => value !== brand);
+
+                if (filterStatus.brand.length == 0){
+                    filterStatus.status = false;
+                }
+            }
+        }
+        console.log(filterStatus)
+        createCards()
+    })
+    )
+
+    document.addEventListener('DOMContentLoaded', createCards())
+
+    function createCards(){
+
+        const laptopCardList = document.querySelector(".product-container");
+        laptopCardList.innerHTML = '';
+
+        fetch('https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("პროდუქცია", data)
+
+            for(let i=0; i<data.products.length; i++){
+                if(data.products[i].category.id == 1){
+                    if(filterStatus.brand.length > 0 && !filterStatus.brand.includes(data.products[i].brand)){
+                        continue;
+                    }
+                        console.log("შემოვიდა")
+
+                        let card = document.createElement('div');
+                        card.classList.add("card");
+                        let laptopCardList = document.querySelector(".product-container");
+                        laptopCardList.appendChild(card);
+
+                        let cardImg = document.createElement('img');
+                        cardImg.setAttribute('src', data.products[i].thumbnail);
+                        card.appendChild(cardImg);
+
+                        let cardTitle = data.products[i].title;
+                        let h5 = document.createElement('h5');
+                        h5.textContent = cardTitle;
+                        card.appendChild(h5);
+
+                        if(data.products[i].price.discountPercentage > 0){
+
+                            let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+                            let currentPrice = data.products[i].price.current;
+                            if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                                beforeDiscountPrice *= 2.77; 
+                                currentPrice *= 2.77;
+                            }
+                            const pricePara = document.createElement('p');
+                            pricePara.classList.add('price')
+                            pricePara.style.textDecoration = "line-through";
+                            pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                            card.appendChild(pricePara)
+                            const DiscountPrice = document.createElement('p');
+                            DiscountPrice.classList.add('sale-price');
+                            DiscountPrice.textContent = `${Math.round(currentPrice)}ლ`
+                            pricePara.appendChild(DiscountPrice)
+
+                        }else{
+
+                            let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+
+                            if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                                beforeDiscountPrice *= 2.77; 
+                            }
+                            const pricePara = document.createElement('p');
+                            pricePara.classList.add('price')
+                            pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                            card.appendChild(pricePara)
+                        
+
+                            const ratingPara = document.createElement('span');
+                            ratingPara.classList.add("rating")
+                            ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                            card.appendChild(ratingPara);
+                            const ratingStar = document.createElement('i');
+                            ratingStar.classList.add("fa-solid");
+                            ratingStar.classList.add("fa-star");
+                            ratingPara.appendChild(ratingStar)
+                        }
+                    
+                }
+            }  
+        })
+    }
+}
+
+
 
 
 

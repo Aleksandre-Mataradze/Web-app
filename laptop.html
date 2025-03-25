@@ -31,8 +31,16 @@
                     </div>
                 </form>
                 <div class="account">
-                    <div class="sign-up">
+                    <div class="sign-in">
                         <i class="fa-solid fa-user"></i> შესვლა
+                    </div>
+                    <div class="user">
+                        <img id="user-img">
+                        <div class="user-menu-container">
+                            <ul>
+                                <li id="log-out">Log Out</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="cart">
                         <i class="fa-solid fa-cart-shopping"></i> 0.00ლ
@@ -40,6 +48,7 @@
                             <span id="counter">0</span>
                         </div>
                     </div>
+                    <!-- <span class="verify-button" style="position: absolute; bottom: -22px; left: 16%; right: 54%; color: rgb(22, 92, 223); cursor: pointer;">verify</span> -->
                 </div>
             </div>
     </header>   
@@ -75,6 +84,76 @@
         </div>
 
     </main>
+    <div class="non-blur"></div>
+    <div class="sign-in-form">
+        <i class="fa-solid fa-xmark quit-sign-in-form"></i>
+        <h3>ავტორიზაციის ველი</h3>
+        <div class="email input">
+            <label for="email">ელექტრონული მისამართი:</label>
+            <input type="email" name="email" id="sign-in-email">
+        </div>
+        <div class="password input">
+            <label for="password">პაროლი:</label>
+            <input type="password" name="password" id="sign-in-password">
+        </div>
+        <button class="sign-in-button">ავტორიზაცია</button>
+        <button class="next-to-sign-up-button">რეგისტრაცია</button>
+    </div>
+    <div class="sign-up-form">
+        <i class="fa-solid fa-xmark quit-sign-up-form"></i>
+        <h3>რეგისტრაციის ველი</h3>
+        <div class="first-name input">
+            <label for="first-name">სახელი:</label>
+            <input type="text" name="first-name" id="first-name">
+        </div>
+        <div class="last-name input">
+            <label for="last-name">გვარი:</label>
+            <input type="text" name="last-name" id="last-name">
+        </div>
+        <div class="age input">
+            <label for="age">ასაკი:</label>
+            <input type="number" name="age" id="age">
+        </div>
+        <div class="email input">
+            <label for="email">ელექტრონული მისამართი:</label>
+            <input type="email" name="email" id="email">
+            <!-- <span id="verify-button" class="verify-button">verify</span> -->
+        </div>
+        <div class="email input">
+            <label for="email">გაიმეორეთ ელ. ფოსტა:</label>
+            <input type="email" name="email" id="email-verification">
+        </div>
+        <div class="password input">
+            <label for="password">პაროლი:</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div class="address input">
+            <label for="address">მისამართი:</label>
+            <input type="text" name="address" id="address">
+        </div>
+        <div class="phone input">
+            <label for="phone">ტელეფონის ნომერი:</label>
+            <input type="text" name="phone" id="phone">
+        </div>
+        <div class="zipcode input">
+            <label for="zipcode">ზიპ კოდი:</label>
+            <input type="number" name="zipcode" id="zipcode">
+        </div>
+        <div class="avatar input">
+            <label for="avatar">📂 პროფილის ფოტო</label>
+            <input type="file" name="avatar" id="avatar">
+        </div>
+        <div class="gender input">
+            <label for="gender">სქესი:</label>
+            <label>
+                <input type="radio" name="gender" id="gender-male" checked value="MALE"> Male
+            </label>
+            <label>
+                <input type="radio" name="gender" id="gender-female" value="FEMALE"> Female
+            </label>
+        </div>
+        <p id="sign-up-button">რეგისტრაცია</p>
+    </div>
 
     <script src="main.js"></script>
 </body>
