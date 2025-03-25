@@ -293,6 +293,57 @@ body{
 
                         }
                     }
+
+                    .price-box{
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 12px;
+                        justify-content: center;
+                        padding-bottom: 6px;
+
+                        #min-price,#max-price{
+                            width: 45%;
+                            border: 1px solid $PrimaryBorderColor;
+                            border-radius: 10px;
+                            padding: 1px 6px;
+                        }
+
+                        input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button{
+                            -webkit-appearance: none;
+                        }
+
+                        #submit-button{
+                            border: 1px solid $PrimaryBorderColor;
+                            padding: 2px 5px;
+                            border-radius: 10px;
+                            background-color: white;
+                            color: #2d6cc5;
+                            transition-property: color, background-color;
+                            transition-duration: 0.3s;
+                            transition-timing-function: ease;
+                            cursor: pointer;
+                        }
+
+                        #submit-button:hover{
+                            background-color: #2d6cc5;
+                            color: white;
+                        }
+
+                        #refresh-button{
+                            background-color: white;
+                            color: #2d6cc5;
+                            border: 1px solid $PrimaryBorderColor;
+                            border-radius: 40%;
+                            transition-property: color, background-color;
+                            transition-duration: 0.3s;
+                            transition-timing-function: ease;
+                            cursor: pointer;
+                        }
+                        #refresh-button:hover{
+                            background-color: #2d6cc5;
+                            color: white;
+                        }
+                    }
                 }
             }
             .product-container{

@@ -264,6 +264,51 @@ body main .main-container .filter-container .filter-box ul li .checkbox {
 body main .main-container .filter-container .filter-box ul li .checkbox i {
   display: none;
 }
+body main .main-container .filter-container .filter-box .price-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding-bottom: 6px;
+}
+body main .main-container .filter-container .filter-box .price-box #min-price, body main .main-container .filter-container .filter-box .price-box #max-price {
+  width: 45%;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  padding: 1px 6px;
+}
+body main .main-container .filter-container .filter-box .price-box input[type=number]::-webkit-inner-spin-button, body main .main-container .filter-container .filter-box .price-box input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+body main .main-container .filter-container .filter-box .price-box #submit-button {
+  border: 1px solid #cccccc;
+  padding: 2px 5px;
+  border-radius: 10px;
+  background-color: white;
+  color: #2d6cc5;
+  transition-property: color, background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  cursor: pointer;
+}
+body main .main-container .filter-container .filter-box .price-box #submit-button:hover {
+  background-color: #2d6cc5;
+  color: white;
+}
+body main .main-container .filter-container .filter-box .price-box #refresh-button {
+  background-color: white;
+  color: #2d6cc5;
+  border: 1px solid #cccccc;
+  border-radius: 40%;
+  transition-property: color, background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  cursor: pointer;
+}
+body main .main-container .filter-container .filter-box .price-box #refresh-button:hover {
+  background-color: #2d6cc5;
+  color: white;
+}
 body main .main-container .product-container {
   display: flex;
   flex-wrap: wrap;
