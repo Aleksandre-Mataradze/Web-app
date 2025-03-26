@@ -1,10 +1,12 @@
+const page = document.body.getAttribute("data-page");
 document.addEventListener('DOMContentLoaded', function(){
-    const page = document.body.getAttribute("data-page");
 
     if (page === "home") {
         homePageFunction();
     } else if (page === "laptop") {
         laptopPageFunction();
+    } else if (page === "phones"){
+        mobilePageFunction();
     }
 });
 
@@ -17,6 +19,11 @@ let priceFilterStatus = {
     maxPrice : Infinity
 };
 
+let ratingFilterStatus = {
+    minRating : 0,
+    maxRating : 5
+};
+
 function homePageFunction(){
 
     let access_token;
@@ -25,76 +32,149 @@ function homePageFunction(){
     .then((response) => response.json())
     .then((data) => {
         console.log(data)
-        let productIndexArr = []; // Array for the Card list.
-        while (productIndexArr.length != 5){
-            let randomProductIndex = Math.floor(Math.random() * (data.products.length - 0) + 0); // Change both 0 to change min value
-            if(productIndexArr.includes(randomProductIndex)){
-                randomProductIndex = Math.floor(Math.random() * (data.products.length - 0) + 0); // Change both 0 to change min value
+
+            for(let i=0; i<data.products.length; i++){
+
+                            let card = document.createElement('div');
+                            card.classList.add("card");
+                            card.setAttribute("data-id", data.products[i]._id)
+                            let laptopCardList = document.querySelector(".product-container");
+                            laptopCardList.appendChild(card);
+
+                            let cardImg = document.createElement('img');
+                            cardImg.setAttribute('src', data.products[i].thumbnail);
+                            card.appendChild(cardImg);
+
+                            let cardTitle = data.products[i].title;
+                            let h5 = document.createElement('h5');
+                            h5.textContent = cardTitle;
+                            card.appendChild(h5);
+
+                            if(data.products[i].price.discountPercentage > 0){
+
+                            let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+                            let currentPrice = data.products[i].price.current;
+                            if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                                beforeDiscountPrice *= 2.77; 
+                                currentPrice *= 2.77;
+                            }
+                            const pricePara = document.createElement('p');
+                            pricePara.classList.add('price')
+                            pricePara.style.textDecoration = "line-through";
+                            pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                            card.appendChild(pricePara)
+                            const DiscountPrice = document.createElement('p');
+                            DiscountPrice.classList.add('sale-price');
+                            DiscountPrice.textContent = `${Math.round(currentPrice)}ლ`
+                            pricePara.appendChild(DiscountPrice)
+
+                            const ratingPara = document.createElement('span');
+                            ratingPara.classList.add("rating")
+                            ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                            card.appendChild(ratingPara);
+                            const ratingStar = document.createElement('i');
+                            ratingStar.classList.add("fa-solid");
+                            ratingStar.classList.add("fa-star");
+                            ratingPara.appendChild(ratingStar)
+
+                            }else{
+
+                                let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+
+                                if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                                    beforeDiscountPrice *= 2.77; 
+                                }
+                                const pricePara = document.createElement('p');
+                                pricePara.classList.add('price')
+                                pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                                card.appendChild(pricePara)
+                            
+
+                                const ratingPara = document.createElement('span');
+                                ratingPara.classList.add("rating")
+                                ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                                card.appendChild(ratingPara);
+                                const ratingStar = document.createElement('i');
+                                ratingStar.classList.add("fa-solid");
+                                ratingStar.classList.add("fa-star");
+                                ratingPara.appendChild(ratingStar);
+                            }
+
+                            const cartDiv = document.createElement('div');
+                            cartDiv.classList.add("cart-box");
+                            card.append(cartDiv)
+                            const cartIcon = document.createElement('i');
+                            cartDiv.appendChild(cartIcon)
+                            cartIcon.classList.add("fa-solid", "fa-cart-shopping")
+                            const cartText = document.createElement('span');
+                            cartText.textContent = "Add to cart"
+                            cartDiv.appendChild(cartText);
             }
-            productIndexArr.push(randomProductIndex);
-        }
 
-        for(let i=0; i<data.products.length; i++){
 
-            if(productIndexArr.includes(i)){
-                if(productIndexArr.includes(i)){
+                    // let card = document.createElement('div');
+                    // card.classList.add("card");
+                    // let laptopCardList = document.querySelector(".laptop-card-list");
+                    // laptopCardList.appendChild(card);
 
-                    let card = document.createElement('div');
-                    card.classList.add("card");
-                    let laptopCardList = document.querySelector(".laptop-card-list");
-                    laptopCardList.appendChild(card);
+                    // let cardImg = document.createElement('img');
+                    // cardImg.setAttribute('src', data.products[i].thumbnail);
+                    // card.appendChild(cardImg);
 
-                    let cardImg = document.createElement('img');
-                    cardImg.setAttribute('src', data.products[i].thumbnail);
-                    card.appendChild(cardImg);
+                    // let cardTitle = data.products[i].title;
+                    // let h5 = document.createElement('h5');
+                    // h5.textContent = cardTitle;
+                    // card.appendChild(h5);
 
-                    let cardTitle = data.products[i].title;
-                    let h5 = document.createElement('h5');
-                    h5.textContent = cardTitle;
-                    card.appendChild(h5);
+                    // if(data.products[i].price.discountPercentage > 0){
 
-                    if(data.products[i].price.discountPercentage > 0){
+                    //     let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+                    //     let currentPrice = data.products[i].price.current;
+                    //     if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                    //         beforeDiscountPrice *= 2.77; 
+                    //         currentPrice *= 2.77;
+                    //     }
+                    //     const pricePara = document.createElement('p');
+                    //     pricePara.classList.add('price')
+                    //     pricePara.style.textDecoration = "line-through";
+                    //     pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                    //     card.appendChild(pricePara)
+                    //     const DiscountPrice = document.createElement('p');
+                    //     DiscountPrice.classList.add('sale-price');
+                    //     DiscountPrice.textContent = `${Math.round(currentPrice)}ლ`
+                    //     pricePara.appendChild(DiscountPrice)
 
-                        let beforeDiscountPrice = data.products[i].price.beforeDiscount;
-                        let currentPrice = data.products[i].price.current;
-                        if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
-                            beforeDiscountPrice *= 2.77; 
-                            currentPrice *= 2.77;
-                        }
-                        const pricePara = document.createElement('p');
-                        pricePara.classList.add('price')
-                        pricePara.style.textDecoration = "line-through";
-                        pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
-                        card.appendChild(pricePara)
-                        const DiscountPrice = document.createElement('p');
-                        DiscountPrice.classList.add('sale-price');
-                        DiscountPrice.textContent = `${Math.round(currentPrice)}ლ`
-                        pricePara.appendChild(DiscountPrice)
+                    // }else{
 
-                    }else{
+                    // let beforeDiscountPrice = data.products[i].price.beforeDiscount;
 
-                    let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+                    // if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                    //     beforeDiscountPrice *= 2.77; 
+                    // }
+                    // const pricePara = document.createElement('p');
+                    // pricePara.classList.add('price')
+                    // pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                    // card.appendChild(pricePara)
+                    // }
 
-                    if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
-                        beforeDiscountPrice *= 2.77; 
-                    }
-                    const pricePara = document.createElement('p');
-                    pricePara.classList.add('price')
-                    pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
-                    card.appendChild(pricePara)
-                }
+                    // const ratingPara = document.createElement('span');
+                    // ratingPara.classList.add("rating");
+                    // ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                    // card.appendChild(ratingPara);
+                    // const ratingStar = document.createElement('i');
+                    // ratingStar.classList.add("fa-solid");
+                    // ratingStar.classList.add("fa-star");
+                    // ratingPara.appendChild(ratingStar);
 
-                    const ratingPara = document.createElement('span');
-                    ratingPara.classList.add("rating")
-                    ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
-                    card.appendChild(ratingPara);
-                    const ratingStar = document.createElement('i');
-                    ratingStar.classList.add("fa-solid");
-                    ratingStar.classList.add("fa-star");
-                    ratingPara.appendChild(ratingStar)
-                }
-            }
-        }
+                    // const cartDiv = document.createElement('div');
+                    // cartDiv.classList.add("cart-box");
+                    // card.append(cartDiv)
+                    // const cartIcon = document.createElement('i');
+                    // cartDiv.appendChild(cartIcon)
+                    // cartIcon.classList.add("fa-solid", "fa-cart-shopping")
+                    // const cartText = document.createElement('span');
+                    // cartText.textContent = "Add to cart"
+                    // cartDiv.appendChild(cartText);
     })
 
     const categoryCont = document.querySelector(".categories");
@@ -102,6 +182,7 @@ function homePageFunction(){
 
     function categoryPopOut(){
         document.querySelector(".categories-list-container").classList.toggle("categories-list-container-block")
+        document.querySelector("#categories-arrow").classList.toggle("categories-arrow-transform");
 
     }
 
@@ -110,10 +191,10 @@ function homePageFunction(){
     const signInButton = document.querySelector(".sign-in");
     signInButton.addEventListener('click', signInPopOut);
 
+    searchCards()
     staySignedIn()
     signOut()
 }
-
 
 function laptopPageFunction(){
 
@@ -144,21 +225,75 @@ function laptopPageFunction(){
             checkBox.appendChild(checked);
         }
 
-        categoryBrandFilter()
-        categoryPriceFilter()
+        categoryBrandFilterLaptop()
+        categoryPriceFilterLaptop()
+        categoryRatingFilterLaptop()
     })
     
     const categoryCont = document.querySelector(".categories");
     categoryCont.addEventListener('click', categoryPopOut);
 
     function categoryPopOut(){
-        document.querySelector(".categories-list-container").classList.toggle("categories-list-container-block")
+        document.querySelector(".categories-list-container").classList.toggle("categories-list-container-block");
+        document.querySelector("#categories-arrow").classList.toggle("categories-arrow-transform");
 
     }
 
     const signInButton = document.querySelector(".sign-in");
     signInButton.addEventListener('click', signInPopOut);
 
+    searchCards()
+    staySignedIn()
+    signOut()
+}
+
+function mobilePageFunction(){
+
+    fetch('https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38')
+    .then((response) => response.json())
+    .then((data) => {
+        
+        const productBrands = [];
+        for(let i=0; i<data.products.length; i++){
+            productBrands.push(data.products[i].brand)
+        }
+        
+        let filteredProductBrands = [];
+        filteredProductBrands = new Set(productBrands)
+        const brandListBox = document.getElementById('brand-list-box')
+
+        for(value of filteredProductBrands){
+            const listElement = document.createElement('li');
+            listElement.classList.add("brand");
+            listElement.setAttribute("data-type", value);
+            listElement.textContent = value;
+            brandListBox.appendChild(listElement);
+            const checkBox = document.createElement('div'); 
+            checkBox.setAttribute("class", `checkbox`);
+            listElement.appendChild(checkBox);
+            const checked = document.createElement("i");
+            checked.setAttribute("class", `fa-solid fa-check ${value}`);
+            checkBox.appendChild(checked);
+        }
+
+        categoryBrandFilterMobile()
+        categoryPriceFilterMobile()
+        categoryRatingFilterMobile()
+    })
+    
+    const categoryCont = document.querySelector(".categories");
+    categoryCont.addEventListener('click', categoryPopOut);
+
+    function categoryPopOut(){
+        document.querySelector(".categories-list-container").classList.toggle("categories-list-container-block");
+        document.querySelector("#categories-arrow").classList.toggle("categories-arrow-transform");
+
+    }
+
+    const signInButton = document.querySelector(".sign-in");
+    signInButton.addEventListener('click', signInPopOut);
+
+    searchCards()
     staySignedIn()
     signOut()
 }
@@ -367,7 +502,6 @@ function staySignedIn(){
     const userIcon = document.querySelector(".user");
 
     if(userID && accessToken != "Incorrect Input"){
-        console.log("ყველა მონაცემი ადგილზეა");
         signInButton.style.display = "none";
         userIcon.style.display = "flex";
 
@@ -380,7 +514,7 @@ function staySignedIn(){
         })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             const userIconImg = document.querySelector("#user-img").setAttribute("src", "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?semt=ais_hybrid")
         })
         
@@ -409,7 +543,7 @@ function signOut(){
     })
 }
 
-function categoryBrandFilter(){
+function categoryBrandFilterLaptop(){
     
 
     const categoryBrands = document.querySelectorAll(".brand");
@@ -430,15 +564,15 @@ function categoryBrandFilter(){
                 }
             }
         }
-        createCards()
+        createCardsLaptop()
     })
     )
 
-    document.addEventListener('DOMContentLoaded', createCards())
+    document.addEventListener('DOMContentLoaded', createCardsLaptop())
 
 }
 
-function categoryPriceFilter(){
+function categoryPriceFilterLaptop(){
 
     document.querySelector(".price-box").addEventListener('submit', function(event){
         event.preventDefault()
@@ -450,10 +584,10 @@ function categoryPriceFilter(){
         })
         console.log("changed prices", priceFilterStatus)
 
-        createCards()
+        createCardsLaptop()
     })
 
-    document.getElementById("refresh-button").addEventListener('click', (event) => {
+    document.getElementById("price-refresh-button").addEventListener('click', (event) => {
         event.preventDefault()
         document.getElementById("min-price").value = '';
         document.getElementById("max-price").value = '';
@@ -461,12 +595,292 @@ function categoryPriceFilter(){
         priceFilterStatus.maxPrice = 99999999999999;
 
         console.log("default prices",priceFilterStatus)
-        createCards()
+        createCardsLaptop()
+    })
+}
+
+function categoryRatingFilterLaptop(){
+
+    document.querySelector(".rating-box").addEventListener('submit', function(event){
+        event.preventDefault()
+
+        let formData = new FormData(this);
+        
+        formData.forEach((value, key) => {
+            ratingFilterStatus[key] = value;
+        })
+        console.log("changed ratings", ratingFilterStatus)
+
+        createCardsLaptop()
+    })
+
+    document.getElementById("rating-refresh-button").addEventListener('click', (event) => {
+        event.preventDefault()
+        document.getElementById("min-rating").value = '';
+        document.getElementById("max-rating").value = '';
+        ratingFilterStatus.minRating = 0;
+        ratingFilterStatus.maxRating = 5;
+
+        console.log("default rating", ratingFilterStatus)
+        createCardsLaptop()
+    })
+}
+
+function categoryBrandFilterMobile(){
+    
+
+    const categoryBrands = document.querySelectorAll(".brand");
+    categoryBrands.forEach((element) => element.addEventListener('click', function(){
+        if (element.getAttribute("data-type") === element.textContent){
+            const brand = element.getAttribute('data-type');
+            const makeChecked = document.querySelector(`.${brand}`)
+            makeChecked.classList.toggle('block')
+            
+            if (makeChecked.classList.contains("block")){
+                filterStatus.brand.push(brand);
+                filterStatus.status = true;
+            }else{
+                filterStatus.brand = filterStatus.brand.filter((value) => value !== brand);
+
+                if (filterStatus.brand.length == 0){
+                    filterStatus.status = false;
+                }
+            }
+        }
+        createCardsMobiles()
+    })
+    )
+
+    document.addEventListener('DOMContentLoaded', createCardsMobiles())
+
+}
+
+function categoryPriceFilterMobile(){
+
+    document.querySelector(".price-box").addEventListener('submit', function(event){
+        event.preventDefault()
+
+        let formData = new FormData(this);
+        
+        formData.forEach((value, key) => {
+            priceFilterStatus[key] = value / 2.77;
+        })
+        console.log("changed prices", priceFilterStatus)
+
+        createCardsMobiles()
+    })
+
+    document.getElementById("price-refresh-button").addEventListener('click', (event) => {
+        event.preventDefault()
+        document.getElementById("min-price").value = '';
+        document.getElementById("max-price").value = '';
+        priceFilterStatus.minPrice = 0;
+        priceFilterStatus.maxPrice = 99999999999999;
+
+        console.log("default prices",priceFilterStatus)
+        createCardsMobiles()
+    })
+}
+
+function categoryRatingFilterMobile(){
+
+    document.querySelector(".rating-box").addEventListener('submit', function(event){
+        event.preventDefault()
+
+        let formData = new FormData(this);
+        
+        formData.forEach((value, key) => {
+            ratingFilterStatus[key] = value;
+        })
+        console.log("changed ratings", ratingFilterStatus)
+
+        createCardsMobiles()
+    })
+
+    document.getElementById("rating-refresh-button").addEventListener('click', (event) => {
+        event.preventDefault()
+        document.getElementById("min-rating").value = '';
+        document.getElementById("max-rating").value = '';
+        ratingFilterStatus.minRating = 0;
+        ratingFilterStatus.maxRating = 5;
+
+        console.log("default rating", ratingFilterStatus)
+        createCardsMobiles()
     })
 }
 
 //used in filter functions
-function createCards(){
+function createCardsLaptop(){
+
+    const laptopCardList = document.querySelector(".product-container");
+    laptopCardList.innerHTML = '';
+
+    fetch('https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38')
+    .then((response) => response.json())
+    .then((data) => {
+        // console.log(data)
+
+        let gelToUSD;
+
+        for(let i=0; i<data.products.length; i++){
+            if(data.products[i].category.id == 1){ 
+                if(filterStatus.brand.length > 0 && !filterStatus.brand.includes(data.products[i].brand)){
+                    continue;
+                }
+                if(data.products[i].price.currency == 'GEL'){
+                    gelToUSD = data.products[i].price.current / 2.77;
+                }
+                if((data.products[i].price.current >= priceFilterStatus.minPrice || gelToUSD >= priceFilterStatus.minPrice) && (data.products[i].price.current <= priceFilterStatus.maxPrice || gelToUSD <= priceFilterStatus.maxPrice)){
+                    if(data.products[i].rating >= ratingFilterStatus.minRating && data.products[i].rating <= ratingFilterStatus.maxRating){
+
+                        let card = document.createElement('div');
+                        card.setAttribute("data-id", data.products[i]._id)
+                        card.classList.add("card");
+                        let laptopCardList = document.querySelector(".product-container");
+                        laptopCardList.appendChild(card);
+
+                        let cardImg = document.createElement('img');
+                        cardImg.setAttribute('src', data.products[i].thumbnail);
+                        card.appendChild(cardImg);
+
+                        let cardTitle = data.products[i].title;
+                        let h5 = document.createElement('h5');
+                        h5.textContent = cardTitle;
+                        card.appendChild(h5);
+
+                        if(data.products[i].price.discountPercentage > 0){
+
+                        let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+                        let currentPrice = data.products[i].price.current;
+                        if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                            beforeDiscountPrice *= 2.77; 
+                            currentPrice *= 2.77;
+                        }
+                        const pricePara = document.createElement('p');
+                        pricePara.classList.add('price')
+                        pricePara.style.textDecoration = "line-through";
+                        pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                        card.appendChild(pricePara)
+                        const DiscountPrice = document.createElement('p');
+                        DiscountPrice.classList.add('sale-price');
+                        DiscountPrice.textContent = `${Math.round(currentPrice)}ლ`
+                        pricePara.appendChild(DiscountPrice)
+
+                        const ratingPara = document.createElement('span');
+                        ratingPara.classList.add("rating")
+                        ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                        card.appendChild(ratingPara);
+                        const ratingStar = document.createElement('i');
+                        ratingStar.classList.add("fa-solid");
+                        ratingStar.classList.add("fa-star");
+                        ratingPara.appendChild(ratingStar)
+
+                        }else{
+
+                            let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+
+                            if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                                beforeDiscountPrice *= 2.77; 
+                            }
+                            const pricePara = document.createElement('p');
+                            pricePara.classList.add('price')
+                            pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                            card.appendChild(pricePara)
+                        
+
+                            const ratingPara = document.createElement('span');
+                            ratingPara.classList.add("rating")
+                            ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                            card.appendChild(ratingPara);
+                            const ratingStar = document.createElement('i');
+                            ratingStar.classList.add("fa-solid");
+                            ratingStar.classList.add("fa-star");
+                            ratingPara.appendChild(ratingStar);
+                        }
+
+                        const cartDiv = document.createElement('div');
+                        cartDiv.classList.add("cart-box");
+                        card.append(cartDiv)
+                        const cartIcon = document.createElement('i');
+                        cartDiv.appendChild(cartIcon)
+                        cartIcon.classList.add("fa-solid", "fa-cart-shopping")
+                        const cartText = document.createElement('span');
+                        cartText.textContent = "Add to cart"
+                        cartDiv.appendChild(cartText);
+                    }
+                    
+                }else if(priceFilterStatus.minPrice == 0 && priceFilterStatus.maxPrice == Infinity){
+
+                    let card = document.createElement('div');
+                    card.classList.add("card");
+                    let laptopCardList = document.querySelector(".product-container");
+                    laptopCardList.appendChild(card);
+
+                    let cardImg = document.createElement('img');
+                    cardImg.setAttribute('src', data.products[i].thumbnail);
+                    card.appendChild(cardImg);
+
+                    let cardTitle = data.products[i].title;
+                    let h5 = document.createElement('h5');
+                    h5.textContent = cardTitle;
+                    card.appendChild(h5);
+
+                    if(data.products[i].price.discountPercentage > 0){
+
+                    let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+                    let currentPrice = data.products[i].price.current;
+                    if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                        beforeDiscountPrice *= 2.77; 
+                        currentPrice *= 2.77;
+                    }
+                    const pricePara = document.createElement('p');
+                    pricePara.classList.add('price')
+                    pricePara.style.textDecoration = "line-through";
+                    pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                    card.appendChild(pricePara)
+                    const DiscountPrice = document.createElement('p');
+                    DiscountPrice.classList.add('sale-price');
+                    DiscountPrice.textContent = `${Math.round(currentPrice)}ლ`
+                    pricePara.appendChild(DiscountPrice)
+
+                    const ratingPara = document.createElement('span');
+                    ratingPara.classList.add("rating")
+                    ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                    card.appendChild(ratingPara);
+                    const ratingStar = document.createElement('i');
+                    ratingStar.classList.add("fa-solid");
+                    ratingStar.classList.add("fa-star");
+                    ratingPara.appendChild(ratingStar)
+
+                    }else{
+
+                        let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+
+                        if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                            beforeDiscountPrice *= 2.77; 
+                        }
+                        const pricePara = document.createElement('p');
+                        pricePara.classList.add('price')
+                        pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                        card.appendChild(pricePara)
+                    
+
+                        const ratingPara = document.createElement('span');
+                        ratingPara.classList.add("rating")
+                        ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                        card.appendChild(ratingPara);
+                        const ratingStar = document.createElement('i');
+                        ratingStar.classList.add("fa-solid");
+                        ratingStar.classList.add("fa-star");
+                        ratingPara.appendChild(ratingStar);
+                    }
+                }
+            }
+        }
+    })
+}
+
+function createCardsMobiles(){
 
     const laptopCardList = document.querySelector(".product-container");
     laptopCardList.innerHTML = '';
@@ -476,71 +890,51 @@ function createCards(){
     .then((data) => {
         console.log(data)
 
-        let maxInUSD;
+        let gelToUSD;
 
         for(let i=0; i<data.products.length; i++){
-            if(data.products[i].category.id == 1){ 
+            if(data.products[i].category.id == 2){ 
                 if(filterStatus.brand.length > 0 && !filterStatus.brand.includes(data.products[i].brand)){
                     continue;
                 }
                 if(data.products[i].price.currency == 'GEL'){
                     gelToUSD = data.products[i].price.current / 2.77;
-                    console.log("გადაიყვანა", gelToUSD)
                 }
-                if((data.products[i].price.current > priceFilterStatus.minPrice || gelToUSD > priceFilterStatus.minPrice) && (data.products[i].price.current < priceFilterStatus.maxPrice || gelToUSD < priceFilterStatus.maxPrice)){
-                    let card = document.createElement('div');
-                    card.classList.add("card");
-                    let laptopCardList = document.querySelector(".product-container");
-                    laptopCardList.appendChild(card);
+                if((data.products[i].price.current >= priceFilterStatus.minPrice || gelToUSD >= priceFilterStatus.minPrice) && (data.products[i].price.current <= priceFilterStatus.maxPrice || gelToUSD <= priceFilterStatus.maxPrice)){
+                    if(data.products[i].rating >= ratingFilterStatus.minRating && data.products[i].rating <= ratingFilterStatus.maxRating){
 
-                    let cardImg = document.createElement('img');
-                    cardImg.setAttribute('src', data.products[i].thumbnail);
-                    card.appendChild(cardImg);
+                        let card = document.createElement('div');
+                        card.setAttribute("data-id", data.products[i]._id)
+                        card.classList.add("card");
+                        let laptopCardList = document.querySelector(".product-container");
+                        laptopCardList.appendChild(card);
 
-                    let cardTitle = data.products[i].title;
-                    let h5 = document.createElement('h5');
-                    h5.textContent = cardTitle;
-                    card.appendChild(h5);
+                        let cardImg = document.createElement('img');
+                        cardImg.setAttribute('src', data.products[i].thumbnail);
+                        card.appendChild(cardImg);
 
-                    if(data.products[i].price.discountPercentage > 0){
+                        let cardTitle = data.products[i].title;
+                        let h5 = document.createElement('h5');
+                        h5.textContent = cardTitle;
+                        card.appendChild(h5);
 
-                    let beforeDiscountPrice = data.products[i].price.beforeDiscount;
-                    let currentPrice = data.products[i].price.current;
-                    if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
-                        beforeDiscountPrice *= 2.77; 
-                        currentPrice *= 2.77;
-                    }
-                    const pricePara = document.createElement('p');
-                    pricePara.classList.add('price')
-                    pricePara.style.textDecoration = "line-through";
-                    pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
-                    card.appendChild(pricePara)
-                    const DiscountPrice = document.createElement('p');
-                    DiscountPrice.classList.add('sale-price');
-                    DiscountPrice.textContent = `${Math.round(currentPrice)}ლ`
-                    pricePara.appendChild(DiscountPrice)
-
-                    const ratingPara = document.createElement('span');
-                    ratingPara.classList.add("rating")
-                    ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
-                    card.appendChild(ratingPara);
-                    const ratingStar = document.createElement('i');
-                    ratingStar.classList.add("fa-solid");
-                    ratingStar.classList.add("fa-star");
-                    ratingPara.appendChild(ratingStar)
-
-                    }else{
+                        if(data.products[i].price.discountPercentage > 0){
 
                         let beforeDiscountPrice = data.products[i].price.beforeDiscount;
-
+                        let currentPrice = data.products[i].price.current;
                         if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
                             beforeDiscountPrice *= 2.77; 
+                            currentPrice *= 2.77;
                         }
                         const pricePara = document.createElement('p');
                         pricePara.classList.add('price')
+                        pricePara.style.textDecoration = "line-through";
                         pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
                         card.appendChild(pricePara)
-                    
+                        const DiscountPrice = document.createElement('p');
+                        DiscountPrice.classList.add('sale-price');
+                        DiscountPrice.textContent = `${Math.round(currentPrice)}ლ`
+                        pricePara.appendChild(DiscountPrice)
 
                         const ratingPara = document.createElement('span');
                         ratingPara.classList.add("rating")
@@ -550,8 +944,43 @@ function createCards(){
                         ratingStar.classList.add("fa-solid");
                         ratingStar.classList.add("fa-star");
                         ratingPara.appendChild(ratingStar)
+
+                        }else{
+
+                            let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+
+                            if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                                beforeDiscountPrice *= 2.77; 
+                            }
+                            const pricePara = document.createElement('p');
+                            pricePara.classList.add('price')
+                            pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                            card.appendChild(pricePara)
+                        
+
+                            const ratingPara = document.createElement('span');
+                            ratingPara.classList.add("rating")
+                            ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                            card.appendChild(ratingPara);
+                            const ratingStar = document.createElement('i');
+                            ratingStar.classList.add("fa-solid");
+                            ratingStar.classList.add("fa-star");
+                            ratingPara.appendChild(ratingStar);
+                        }
+
+                        const cartDiv = document.createElement('div');
+                        cartDiv.classList.add("cart-box");
+                        card.append(cartDiv)
+                        const cartIcon = document.createElement('i');
+                        cartDiv.appendChild(cartIcon)
+                        cartIcon.classList.add("fa-solid", "fa-cart-shopping")
+                        const cartText = document.createElement('span');
+                        cartText.textContent = "Add to cart"
+                        cartDiv.appendChild(cartText);
                     }
+                    
                 }else if(priceFilterStatus.minPrice == 0 && priceFilterStatus.maxPrice == Infinity){
+
                     let card = document.createElement('div');
                     card.classList.add("card");
                     let laptopCardList = document.querySelector(".product-container");
@@ -613,7 +1042,7 @@ function createCards(){
                         const ratingStar = document.createElement('i');
                         ratingStar.classList.add("fa-solid");
                         ratingStar.classList.add("fa-star");
-                        ratingPara.appendChild(ratingStar)
+                        ratingPara.appendChild(ratingStar);
                     }
                 }
             }
@@ -621,9 +1050,120 @@ function createCards(){
     })
 }
 
+function searchCards(){
+
+    let searchInput=  {
+
+    }
+    document.getElementById("search-bar").addEventListener('submit', function(event){
+        event.preventDefault();
+
+        const laptopCardList = document.querySelector(".product-container");
+        laptopCardList.innerHTML = '';
+
+        searchInput = new FormData(this);
+        searchInput.forEach((value) => {
+            searchInput.productkeyword = value;
+        })
+        searchBarInput(searchInput.productkeyword)
+    })
 
 
+    function searchBarInput(keywords){
+        
+        fetch(`https://api.everrest.educata.dev/shop/products/search?keywords=${keywords}&page_size=38`)
+        .then((response) => response.json())
+        .then((data) => {
+            if (!keywords && (page === "laptop")){
+                console.log("შემოვიდა Laptopში")
+                createCardsLaptop()
+            }else if (!keywords && (page === "phones")){
+                console.log("შემოვიდა Phonesში")
+                createCardsMobiles()
+            }else if (!keywords && (page === "home")){
+                console.log("შემოვიდა homeში")
+                createCardsMobiles()
+                createCardsLaptop()
+            }
+            else{
+                for(let i=0; i<data.products.length; i++){
+                    let card = document.createElement('div');
+                            card.classList.add("card");
+                            let laptopCardList = document.querySelector(".product-container");
+                            laptopCardList.appendChild(card);
 
+                            let cardImg = document.createElement('img');
+                            cardImg.setAttribute('src', data.products[i].thumbnail);
+                            card.appendChild(cardImg);
 
+                            let cardTitle = data.products[i].title;
+                            let h5 = document.createElement('h5');
+                            h5.textContent = cardTitle;
+                            card.appendChild(h5);
 
+                            if(data.products[i].price.discountPercentage > 0){
 
+                            let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+                            let currentPrice = data.products[i].price.current;
+                            if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                                beforeDiscountPrice *= 2.77; 
+                                currentPrice *= 2.77;
+                            }
+                            const pricePara = document.createElement('p');
+                            pricePara.classList.add('price')
+                            pricePara.style.textDecoration = "line-through";
+                            pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                            card.appendChild(pricePara)
+                            const DiscountPrice = document.createElement('p');
+                            DiscountPrice.classList.add('sale-price');
+                            DiscountPrice.textContent = `${Math.round(currentPrice)}ლ`
+                            pricePara.appendChild(DiscountPrice)
+
+                            const ratingPara = document.createElement('span');
+                            ratingPara.classList.add("rating")
+                            ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                            card.appendChild(ratingPara);
+                            const ratingStar = document.createElement('i');
+                            ratingStar.classList.add("fa-solid");
+                            ratingStar.classList.add("fa-star");
+                            ratingPara.appendChild(ratingStar)
+
+                            }else{
+
+                                let beforeDiscountPrice = data.products[i].price.beforeDiscount;
+
+                                if(data.products[i].price.currency == 'USD'){ // converts USD to GEL
+                                    beforeDiscountPrice *= 2.77; 
+                                }
+                                const pricePara = document.createElement('p');
+                                pricePara.classList.add('price')
+                                pricePara.textContent = `${Math.round(beforeDiscountPrice)}ლ`;
+                                card.appendChild(pricePara)
+                            
+
+                                const ratingPara = document.createElement('span');
+                                ratingPara.classList.add("rating")
+                                ratingPara.textContent = Math.round(data.products[i].rating * 10) / 10;
+                                card.appendChild(ratingPara);
+                                const ratingStar = document.createElement('i');
+                                ratingStar.classList.add("fa-solid");
+                                ratingStar.classList.add("fa-star");
+                                ratingPara.appendChild(ratingStar);
+                            }
+
+                            const cartDiv = document.createElement('div');
+                            cartDiv.classList.add("cart-box");
+                            card.append(cartDiv)
+                            const cartIcon = document.createElement('i');
+                            cartDiv.appendChild(cartIcon)
+                            cartIcon.classList.add("fa-solid", "fa-cart-shopping")
+                            const cartText = document.createElement('span');
+                            cartText.textContent = "Add to cart"
+                            cartDiv.appendChild(cartText);
+
+                }
+            }
+            // createCardsLaptop()
+        })
+    }
+}

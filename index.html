@@ -24,10 +24,10 @@
         </div>
             <div class="header-container-main">
                 <a href="index.html"><img src="./img/DALL·E.webp" alt="" style="border-radius: 50%; width: 85px;"></a>
-                <form action="">
-                    <input type="text" placeholder="რას ეძებთ?">
+                <form id="search-bar">
+                    <input type="text" name="searchInput" id="search-input" placeholder="რას ეძებთ?">
                     <div id="submit">
-                        <span> ძებნა </span>
+                        <input type="submit" name="searchSubmit" id="search-submit" value="ძებნა">
                     </div>
                 </form>
                 <div class="account">
@@ -56,7 +56,7 @@
         <div class="categories-container">
             <div class="categories">
                 <span>კატეგორიები</span>
-                <i class="fa-solid fa-arrow-down"></i>
+                <i class="fa-solid fa-arrow-down" id="categories-arrow"></i>
             </div>
             <div class="categories-list-container">
                 <ul>
@@ -66,10 +66,11 @@
             </div>
         </div>
         <div style="display: flex; justify-content: center; flex-direction: row; gap: 20px;">
-            <div class="card-list">
+            <!-- <div class="card-list">
                 <div class="laptop-card-list">
                 </div>
-            </div>
+            </div> -->
+            <div class="product-container"></div>
         </div>
     </main>
     <div class="non-blur"></div>

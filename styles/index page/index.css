@@ -62,7 +62,7 @@ body header .header-container-main form {
   display: flex;
   width: 36rem;
 }
-body header .header-container-main form input {
+body header .header-container-main form #search-input {
   width: 80%;
   height: 42px;
   border-top-left-radius: 12px;
@@ -79,6 +79,15 @@ body header .header-container-main form #submit {
   border-bottom-right-radius: 12px;
   width: 20%;
   background-color: #2f64ad;
+}
+body header .header-container-main form #submit #search-submit {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #2f64ad;
+  background-color: #2f64ad;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  color: white;
   cursor: pointer;
 }
 body header .header-container-main .account {
@@ -175,6 +184,9 @@ body main .categories-container .categories {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
+body main .categories-container .categories .categories-arrow-transform {
+  transform: rotate(180deg);
+}
 body main .categories-container .categories-list-container {
   display: none;
   position: absolute;
@@ -208,17 +220,15 @@ body main .categories-container .categories-list-container ul li a {
 body main .categories-container .categories-list-container-block {
   display: block;
 }
-body main .card-list {
-  padding: 15px 12px;
-  width: 100%;
-}
-body main .card-list .laptop-card-list {
+body main .product-container {
   display: flex;
-  justify-content: center;
-  flex-direction: row;
+  flex-wrap: wrap;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 1920px;
   gap: 24px;
 }
-body main .card-list .laptop-card-list .card {
+body main .product-container .card {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -232,36 +242,58 @@ body main .card-list .laptop-card-list .card {
   position: relative;
   cursor: pointer;
 }
-body main .card-list .laptop-card-list .card img {
+body main .product-container .card img {
   height: 170px;
 }
-body main .card-list .laptop-card-list .card h5 {
+body main .product-container .card h5 {
   margin-top: 12px;
   text-align: center;
   font-weight: normal;
 }
-body main .card-list .laptop-card-list .card .price {
+body main .product-container .card .price {
   position: absolute;
   bottom: 60px;
   color: red;
 }
-body main .card-list .laptop-card-list .card .sale-price {
+body main .product-container .card .sale-price {
   color: #7c7c7c;
   position: absolute;
   right: -44px;
   bottom: -12px;
   rotate: -24deg;
 }
-body main .card-list .laptop-card-list .card .rating {
+body main .product-container .card .rating {
   position: absolute;
   left: 15px;
   bottom: 15px;
 }
-body main .card-list .laptop-card-list .card .rating i {
+body main .product-container .card .rating i {
   color: rgb(223, 189, 0);
 }
-body main .card-list .laptop-card-list .card:hover {
+body main .product-container .card .cart-box {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  gap: 2px;
+  position: absolute;
+  background-color: #2f64ad;
+  border: 1px solid #cccccc;
+  border-radius: 12px;
+  right: 12px;
+  bottom: 12px;
+  font-size: 12px;
+  color: white;
+  opacity: 0;
+  cursor: pointer;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+body main .product-container .card:hover {
   box-shadow: 1px 1px 4px #cccccc;
+}
+body main .product-container .card:hover .cart-box {
+  opacity: 1;
 }
 body .blurred-background {
   position: absolute;

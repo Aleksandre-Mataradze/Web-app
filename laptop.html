@@ -24,10 +24,10 @@
         </div>
             <div class="header-container-main">
                 <a href="index.html"><img src="./img/DALL·E.webp" alt="" style="border-radius: 50%; width: 85px;"></a>
-                <form action="">
-                    <input type="text" placeholder="რას ეძებთ?">
+                <form id="search-bar">
+                    <input type="text" name="searchInput" id="search-input" placeholder="რას ეძებთ?">
                     <div id="submit">
-                        <span> ძებნა </span>
+                        <input type="submit" name="searchSubmit" id="search-submit" value="ძებნა">
                     </div>
                 </form>
                 <div class="account">
@@ -56,7 +56,7 @@
         <div class="categories-container">
             <div class="categories">
                 <span>კატეგორიები</span>
-                <i class="fa-solid fa-arrow-down"></i>
+                <i class="fa-solid fa-arrow-down" id="categories-arrow"></i>
             </div>
             <div class="categories-list-container">
                 <ul>
@@ -75,15 +75,21 @@
                 </div>
                 <div class="filter-box">
                     <p>ფასი</p>
-                    <form class="price-box" action="">
+                    <form class="price-box">
                         <input type="number" id="min-price" name="minPrice" placeholder="მინიმუმი" required>
                         <input type="number" id="max-price" name="maxPrice" placeholder="მაქსიმუმი" required>
-                        <input type="submit" name="submitButton" id="submit-button" value="გაფილტვრა">
-                        <button id="refresh-button"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <input type="submit" name="priceSubmitButton" id="submit-button-price" value="გაფილტვრა">
+                        <button id="price-refresh-button"><i class="fa-solid fa-arrows-rotate"></i></button>
                     </form>
                 </div>
                 <div class="filter-box">
                     <p>რეიტინგი</p>
+                    <form class="rating-box">
+                        <input type="number" id="min-rating" name="minRating" placeholder="0" required>
+                        <input type="number" id="max-rating" name="maxRating" placeholder="5" required>
+                        <input type="submit" name="ratingSubmitButton" id="submit-button-rating" value="გაფილტვრა">
+                        <button id="rating-refresh-button"><i class="fa-solid fa-arrows-rotate"></i></button>
+                    </form>
                 </div>
             </div>
             <div class="product-container"></div>
