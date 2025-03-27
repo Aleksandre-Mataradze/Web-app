@@ -227,7 +227,6 @@ body main .main-container {
   display: flex;
   flex-direction: row;
   padding: 0px 16px;
-  gap: 64px;
 }
 body main .main-container .filter-container {
   display: flex;
@@ -369,9 +368,8 @@ body main .main-container .filter-container .filter-box .rating-box #rating-refr
 body main .main-container .product-container {
   display: flex;
   flex-wrap: wrap;
-  width: -moz-fit-content;
-  width: fit-content;
-  max-width: 1920px;
+  justify-content: center;
+  width: 100%;
   gap: 24px;
 }
 body main .main-container .product-container .card {

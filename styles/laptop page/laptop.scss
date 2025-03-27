@@ -250,7 +250,6 @@ body{
             display: flex;
             flex-direction: row;
             padding: 0px 16px;
-            gap: 64px;
 
             .filter-container{
                 display: flex;
@@ -258,7 +257,6 @@ body{
                 align-items: center;
                 width: 280px;
                 min-width: 280px;
-                // margin-left: 1%;
                 padding: 6px 0px;
                 gap: 6px;
 
@@ -414,8 +412,8 @@ body{
             .product-container{
                 display: flex;
                 flex-wrap: wrap;
-                width: fit-content;
-                max-width: 1920px;
+                justify-content: center;
+                width: 100%;
                 gap: 24px;
 
                 .card{
