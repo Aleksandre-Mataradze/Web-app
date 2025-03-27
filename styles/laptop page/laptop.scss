@@ -249,7 +249,8 @@ body{
         .main-container{
             display: flex;
             flex-direction: row;
-            padding: 0px 16px;
+            padding: 48px 10% 48px 16px;
+            gap: 64px;
 
             .filter-container{
                 display: flex;

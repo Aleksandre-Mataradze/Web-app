@@ -192,8 +192,9 @@ body{
                 justify-content: center;
                 align-items: center;
                 width: 100%;
-                height: 680px;
-                border: 1px solid $PrimaryBorderColor;
+                height: 700px;
+                border: 2px solid $PrimaryBgColor;
+                border-radius: 12px;
                 padding: 12px;
                 position: relative;
                 min-width: fit-content;
@@ -237,14 +238,22 @@ body{
                 flex-direction: column;
                 gap: 24px;
                 width: 100%;
-                padding: 0px 12px 214px 12px;
+                height: min-content;
+                padding: 0px 12px 0px 12px;
+                position: relative;
 
                 .product-info{
                     display: flex;
                     flex-direction: column;
+                    padding: 2px 4px;
+                    border: 2px solid $PrimaryBgColor;
+                    border-top-right-radius: 12px;
+                    border-top-left-radius: 12px;
+                    border-bottom: none;
                     gap: 42px;
 
                     .product-title{
+                        padding: 0px 4px;
                         display: block;
                     }
                     
@@ -263,7 +272,7 @@ body{
                         display: flex;
                         flex-direction: column;
                         list-style: circle;
-                        padding: 0;
+                        padding: 24px;
                         gap: 8px;
     
                         li::marker{
@@ -274,10 +283,40 @@ body{
                     .product-description-container{
                         display: flex;
                         flex-direction: column;
+                        padding: 2px 4px;
+                        border: 2px solid $PrimaryBgColor;
+                        border-bottom-left-radius: 12px;
+                        border-bottom-right-radius: 12px;
+                        border-top: none;
                         gap: 12px;
                     }
                 }
 
+                .cart-container{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 4px;
+                    position: absolute;
+                    bottom: -64px;
+                    left: 25%;
+                    right: 25%;
+                    padding: 12px 24px;
+                    background-color: $PrimaryBgColor;
+                    border-radius: 12px;
+                    color: white;
+
+                    cursor: pointer;
+
+                    i{
+                        font-size: 24px;
+                    }
+                }
+                @media (max-width: 1724px) {
+                    .cart-container{
+                        bottom: -92px;
+                    }
+                }
             }
         }
     }

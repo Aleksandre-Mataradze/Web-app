@@ -226,7 +226,8 @@ body main .categories-container .categories-list-container-block {
 body main .main-container {
   display: flex;
   flex-direction: row;
-  padding: 0px 16px;
+  padding: 48px 10% 48px 16px;
+  gap: 64px;
 }
 body main .main-container .filter-container {
   display: flex;

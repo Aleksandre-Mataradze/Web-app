@@ -335,6 +335,15 @@ function productPageFunction(){
             warranty.textContent = `გარანტია არ მოყვება`
         }
 
+        // display production date
+        if(data.issueDate){
+            const productDetails = document.getElementById("product-details");
+            const year = document.createElement('li');
+            const dateString = data.issueDate;
+            productDetails.appendChild(year)
+            year.textContent = `გამოშვების წელი: ${dateString.slice(0,4)}`;
+        }
+
         // display category name
         if(data.category.name){
             const productDetails = document.getElementById("product-details");
@@ -833,7 +842,7 @@ function createCardsLaptop(){
                         cardImgAnchor.setAttribute('href', 'product.html')
                         cardImg.setAttribute('src', data.products[i].thumbnail);
                         card.appendChild(cardImgAnchor);
-                        cardImgAnchor.appendChild(cardImg)
+                        cardImgAnchor.appendChild(cardImg);
 
                         let cardTitle = data.products[i].title;
                         let h5 = document.createElement('h5');
@@ -969,6 +978,7 @@ function createCardsLaptop(){
                 }
             }
         }
+        storageCardId()
     })
 }
 
@@ -1006,7 +1016,7 @@ function createCardsMobiles(){
                         cardImgAnchor.setAttribute('href', 'product.html')
                         cardImg.setAttribute('src', data.products[i].thumbnail);
                         card.appendChild(cardImgAnchor);
-                        cardImgAnchor.appendChild(cardImg)
+                        cardImgAnchor.appendChild(cardImg);
 
                         let cardTitle = data.products[i].title;
                         let h5 = document.createElement('h5');
@@ -1142,6 +1152,7 @@ function createCardsMobiles(){
                 }
             }
         }
+        storageCardId()
     })
 }
 
@@ -1258,7 +1269,7 @@ function searchCards(){
 
                 }
             }
-            // createCardsLaptop()
+            storageCardId()
         })
     }
 }

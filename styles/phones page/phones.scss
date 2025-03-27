@@ -249,7 +249,7 @@ body{
         .main-container{
             display: flex;
             flex-direction: row;
-            padding: 0px 16px;
+            padding: 48px 10% 48px 16px;
             gap: 64px;
 
             .filter-container{
@@ -414,8 +414,8 @@ body{
             .product-container{
                 display: flex;
                 flex-wrap: wrap;
-                width: fit-content;
-                max-width: 1920px;
+                justify-content: center;
+                width: 100%;
                 gap: 24px;
 
                 .card{
