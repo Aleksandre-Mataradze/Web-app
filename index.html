@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/index page/index.css">
+</head>
+<body data-page="home">
+    <header>
+        <div class="header-container-top">
+            <div class="header-container-contact-info">
+                <span> <i class="fa-solid fa-phone"></i> +995 568 112 011 </span>
+                <span> <i class="fa-solid fa-envelope"></i> mataradze.alex@gmail.com </span>
+            </div>
+            <div class="header-container-service">
+                <ul class="service-list">
+                    <li class="service"> ონლაინ განდვადება </li>
+                    <li class="service"> მიწოდება </li>
+                    <li class="service" style="border-right: 1px solid white;"> <img src="./img/Flag_of_Georgia.svg.png" alt="GE-LANG" style="width: 18px;"> GEO </li>
+                </ul>
+            </div>
+        </div>
+            <div class="header-container-main">
+                <a href="index.html"><img src="./img/DALL·E.webp" alt="" style="border-radius: 50%; width: 85px;"></a>
+                <form id="search-bar">
+                    <input type="text" name="searchInput" id="search-input" placeholder="რას ეძებთ?">
+                    <div id="submit">
+                        <input type="submit" name="searchSubmit" id="search-submit" value="ძებნა">
+                    </div>
+                </form>
+                <div class="account">
+                    <div class="sign-in">
+                        <i class="fa-solid fa-user"></i> შესვლა
+                    </div>
+                    <div class="user">
+                        <img id="user-img">
+                        <div class="user-menu-container">
+                            <ul>
+                                <li id="log-out">Log Out</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cart">
+                        <i class="fa-solid fa-cart-shopping"></i> 0.00ლ
+                        <div class="amout">
+                            <span id="counter">0</span>
+                        </div>
+                    </div>
+                    <!-- <span class="verify-button" style="position: absolute; bottom: -22px; left: 16%; right: 54%; color: rgb(22, 92, 223); cursor: pointer;">verify</span> -->
+                </div>
+            </div>
+    </header>
+    <main>
+        <div class="categories-container">
+            <div class="categories">
+                <span>კატეგორიები</span>
+                <i class="fa-solid fa-arrow-down" id="categories-arrow"></i>
+            </div>
+            <div class="categories-list-container">
+                <ul>
+                    <li><a href="laptop.html">ლეპტოპი</a></li>
+                    <li><a href="phones.html">ტელეფონი</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; flex-direction: row; gap: 20px;">
+            <!-- <div class="card-list">
+                <div class="laptop-card-list">
+                </div>
+            </div> -->
+            <div class="product-container"></div>
+        </div>
+    </main>
+    <div class="non-blur"></div>
+    <div class="sign-in-form">
+        <i class="fa-solid fa-xmark quit-sign-in-form"></i>
+        <h3>ავტორიზაციის ველი</h3>
+        <div class="email input">
+            <label for="email">ელექტრონული მისამართი:</label>
+            <input type="email" name="email" id="sign-in-email">
+        </div>
+        <div class="password input">
+            <label for="password">პაროლი:</label>
+            <input type="password" name="password" id="sign-in-password">
+        </div>
+        <button class="sign-in-button">ავტორიზაცია</button>
+        <button class="next-to-sign-up-button">რეგისტრაცია</button>
+    </div>
+    <div class="sign-up-form">
+        <i class="fa-solid fa-xmark quit-sign-up-form"></i>
+        <h3>რეგისტრაციის ველი</h3>
+        <div class="first-name input">
+            <label for="first-name">სახელი:</label>
+            <input type="text" name="first-name" id="first-name">
+        </div>
+        <div class="last-name input">
+            <label for="last-name">გვარი:</label>
+            <input type="text" name="last-name" id="last-name">
+        </div>
+        <div class="age input">
+            <label for="age">ასაკი:</label>
+            <input type="number" name="age" id="age">
+        </div>
+        <div class="email input">
+            <label for="email">ელექტრონული მისამართი:</label>
+            <input type="email" name="email" id="email">
+            <!-- <span id="verify-button" class="verify-button">verify</span> -->
+        </div>
+        <div class="email input">
+            <label for="email">გაიმეორეთ ელ. ფოსტა:</label>
+            <input type="email" name="email" id="email-verification">
+        </div>
+        <div class="password input">
+            <label for="password">პაროლი:</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div class="address input">
+            <label for="address">მისამართი:</label>
+            <input type="text" name="address" id="address">
+        </div>
+        <div class="phone input">
+            <label for="phone">ტელეფონის ნომერი:</label>
+            <input type="text" name="phone" id="phone">
+        </div>
+        <div class="zipcode input">
+            <label for="zipcode">ზიპ კოდი:</label>
+            <input type="number" name="zipcode" id="zipcode">
+        </div>
+        <div class="avatar input">
+            <label for="avatar">📂 პროფილის ფოტო</label>
+            <input type="file" name="avatar" id="avatar">
+        </div>
+        <div class="gender input">
+            <label for="gender">სქესი:</label>
+            <label>
+                <input type="radio" name="gender" id="gender-male" checked value="MALE"> Male
+            </label>
+            <label>
+                <input type="radio" name="gender" id="gender-female" value="FEMALE"> Female
+            </label>
+        </div>
+        <p id="sign-up-button">რეგისტრაცია</p>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

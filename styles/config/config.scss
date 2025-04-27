@@ -1,0 +1,12 @@
+@font-face {
+    font-family: NotoGeo;
+    src: url(../../fonts/Noto_Serif_Georgian/static/NotoSerifGeorgian-Regular.ttf);
+}
+
+$PrimaryBgColor: #2f64ad;
+$GeoLang: NotoGeo;
+$PrimaryBorderColor: #cccccc;
+
+%block{
+    display: block;
+}
